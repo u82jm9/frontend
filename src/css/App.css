@@ -1,0 +1,280 @@
+/* Base styles */
+
+/* .alert */
+.alert {
+  align-items: center;
+  background-color: rgb(122, 204, 247);
+  border-radius: 10px;
+  color: white;
+  display: inline-flex;
+  height: 20px;
+  position: relative;
+  width: 95%;
+  z-index: 1;
+}
+
+.alert h1 {
+  font-size: small;
+  font-weight: bolder;
+  height: 18px;
+  margin: auto;
+}
+
+/* .App */
+.App {
+  align-items: center;
+  background-color: rgb(248, 226, 226);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* .top-sticker */
+.top-sticker {
+  transform: rotate(45deg);
+  background-color: rgb(238, 207, 85);
+  border-radius: 112.5px;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  right: 80px;
+  top: 0;
+  z-index: 10;
+}
+
+/* .bottom-sticker */
+.bottom-sticker {
+  transform: rotate(45deg);
+  background-color: rgb(238, 207, 85);
+  border-radius: 100px;
+  position: absolute;
+  height: 175px;
+  width: 175px;
+  right: 10px;
+  top: 150px;
+  z-index: 10;
+}
+
+/* .card */
+.card {
+  align-items: center;
+  background-color: rgb(237, 231, 159);
+  border: 1px solid black;
+  border-radius: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  margin: 25px 2px 25px 2px;
+  min-height: 300px;
+  text-align: center;
+  width: 250px;
+}
+
+/* .card-display */
+.card-display {
+  display: flex;
+}
+
+/* .component */
+.component {
+  margin: auto;
+  width: fit-content;
+  min-height: 500px;
+}
+
+/* .delete-button */
+.delete-button {
+  left: 95px;
+  border-radius: 10px;
+  opacity: 0.3;
+  position: relative;
+  width: 30px;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+  border-color: black;
+  opacity: 1;
+}
+
+/* .dismiss-button */
+.dismiss-button {
+  border: 0;
+  border-radius: 10px;
+  opacity: 0.5;
+  position: absolute;
+  right: 0;
+}
+
+.dismiss-button:hover {
+  background-color: darkred;
+  border-color: black;
+  opacity: 2;
+}
+
+/* .display-component */
+.display-component {
+  background-color: rgb(246, 183, 183);
+  min-width: 500px;
+  padding: 10px;
+}
+
+.filter-sort {
+  min-width: 250px;
+}
+
+/* .form */
+.form {
+  height: fit-content;
+  margin: 5px;
+}
+
+/* .form-field */
+.form-field {
+  flex-direction: column;
+  padding-top: 7px;
+  width: 85%;
+}
+
+/* .loading-img-container */
+.loading-img-container {
+  left: 50%;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.nav-bar {
+  min-height: 62px;
+}
+
+/* .nav-bar img */
+.nav-bar img {
+  height: 50px;
+  width: 50px;
+}
+
+/* .note-component */
+.note-component {
+  display: block;
+  margin: 0 5% 0 5%;
+  padding: 2.5%;
+}
+
+/* .note-done */
+.note-done {
+  text-decoration: line-through;
+}
+
+/* .note-edit */
+.note-edit {
+  font-weight: bold;
+  padding-top: 25px;
+}
+
+/* .note-task */
+.note-task {
+  height: min-content;
+  transition: height 0.5s ease-in-out, font-weight 0.5s ease-in-out;
+}
+
+.note-task:hover {
+  cursor: pointer;
+  font-weight: bolder;
+  height: max-content;
+  padding-top: 0;
+}
+
+/* .note-title */
+.note-title {
+  height: 30px;
+}
+
+/* .page */
+.page {
+  background-color: #d37373;
+  position: relative;
+  transition: opacity 0.5s ease-in-out;
+  width: 90%;
+  z-index: 1;
+}
+
+.scroll-button {
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+  z-index: 10;
+}
+
+/* .switch */
+.switch {
+  align-items: center;
+  display: inline-flex;
+  font-size: x-small;
+  height: 40px;
+  width: min-content;
+}
+
+/* .switch-container */
+.switch-container {
+  align-items: center;
+}
+
+/* .switch h1 */
+.switch h1 {
+  font-size: 2em;
+  padding: 5px;
+}
+
+/* .switch svg */
+.switch svg {
+  height: 90%;
+  padding: 5% 0 0 10%;
+  width: 90%;
+}
+
+/* .text-box */
+.text-box {
+  align-content: center;
+  border-right: 1px solid black;
+  padding: 5px 5px 0 5px;
+}
+
+/* .weather-search h1 */
+.weather-search h1 {
+  margin: 10px 0 10px 0;
+}
+
+/* .weather-table */
+.weather-table {
+  display: block;
+  margin: auto;
+  padding: 2.5%;
+}
+
+/* .weather-table img */
+.weather-table img {
+  height: 40px;
+  width: 40px;
+}
+
+/* .weather-table td */
+.weather-table td {
+  border: 1px solid;
+  border-color: black;
+  width: 50px;
+}
+
+/* .loading */
+.loading {
+  opacity: 0.1;
+  z-index: 1;
+}
+
+/* .loadingComplete */
+.loadingComplete {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}

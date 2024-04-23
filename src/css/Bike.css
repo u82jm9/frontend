@@ -1,0 +1,62 @@
+.bike-menu {
+  display: inline-flex;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: fit-content;
+  margin: 0 10px 10px 10px;
+}
+
+.bike-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: inline-flex;
+}
+
+.menu-item {
+  /* top | right | bottom | left */
+  padding: 0 5px 0 5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  align-content: center;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.not-clickable:hover {
+  cursor: crosshair;
+}
+
+.bike-form {
+  align-items: center;
+  display: inline-flex;
+  height: 26px;
+  overflow: hidden;
+  resize: none;
+}
+
+.bike-display {
+  min-height: 450px;
+}
+
+.image-container {
+  background-image: url(../images/stage-background.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 600px;
+  margin: auto;
+}
+
+.images img {
+  height: 300px;
+  max-width: 500px;
+}
+
+.images {
+  padding-top: 150px;
+  width: auto;
+}
