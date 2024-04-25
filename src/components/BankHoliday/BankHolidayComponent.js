@@ -6,7 +6,6 @@ const BANK_HOLIDAY_API = "https://www.gov.uk/bank-holidays.json";
 const today = new Date();
 const BankHolidayComponent = () => {
   const [showHoliday, setShowHoliday] = useState(false);
-  const [bankDays, setBankDays] = useState([]);
   const [nextBankDay, setNextBankDay] = useState();
   const [findNextDate, setFindNextDate] = useState(true);
   useEffect(() => {
@@ -22,7 +21,6 @@ const BankHolidayComponent = () => {
         const dateB = new Date(b.date);
         return dateA - dateB;
       });
-      setBankDays(tempDays);
       getNextDay(tempDays);
     } catch (err) {
       Logger.errorLog(err);
@@ -49,7 +47,7 @@ const BankHolidayComponent = () => {
           <div>
             <h2>Bank Holiday</h2>
             <h3>{nextBankDay.title}</h3>
-            <h3>{nextBankDay.date.split("-").reverse().join("/")}</h3>
+            <h1>{nextBankDay.date.split("-").reverse().join("/")}</h1>
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../../css/App.css";
+import "../../css/Background.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import PageLayout from "./PageLayout";
 import HomePage from "./HomePage";

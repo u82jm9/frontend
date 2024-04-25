@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Switch } from "@mui/material";
 import NavBar from "../NavBar/NavBar";
 
 function PageLayout({ children, backendOn }) {
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    logDarkModeToLocalStorage();
+  }, darkMode);
 
   useEffect(() => {
     handleScroll();
@@ -12,6 +17,10 @@ function PageLayout({ children, backendOn }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  function logDarkModeToLocalStorage() {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }
 
   function scrollToTop() {
     window.scrollTo({
@@ -28,11 +37,29 @@ function PageLayout({ children, backendOn }) {
     }
   }
   return (
-    <div className="App">
-      <div className="page">
-        <div className="component">
-          <NavBar backendOn={backendOn} />
-          <div className="display-component">{children}</div>
+    <div className={`App ${darkMode ? "App-dark" : "App-light"}`}>
+      <div className={`page ${darkMode ? "page-dark" : "page-light"}`}>
+        <div
+          className={`component ${
+            darkMode ? "component-dark" : "component-light"
+          }`}
+        >
+          <NavBar darkMode={darkMode} backendOn={backendOn} />
+          <div className="dark-toggle">
+            <h3>Dark Mode</h3>
+            <Switch
+              onClick={() => {
+                setDarkMode(!darkMode);
+              }}
+            />
+          </div>
+          <div
+            className={`display-component ${
+              darkMode ? "display-component-dark" : "display-component-light"
+            }`}
+          >
+            {children}
+          </div>
         </div>
         {showScrollButton && (
           <div className="scroll-button">

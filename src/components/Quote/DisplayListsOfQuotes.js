@@ -12,7 +12,7 @@ import QuoteDisplayer from "./QuoteDisplayer";
 import Logger from "../Logger";
 
 const DisplayListsOfQuotes = ({ allQuotes }) => {
-  const totalPages = allQuotes.sort(() => Math.random() - 0.5);
+  const totalPages = Math.ceil(allQuotes.length / 5);
   const [displayList, setDisplayList] = useState([]);
   const [numberOfLists, setNumberOfLists] = useState(0);
   const [smallerLists, setSmallerLists] = useState([]);

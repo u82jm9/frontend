@@ -23,7 +23,6 @@
 /* .App */
 .App {
   align-items: center;
-  background-color: rgb(248, 226, 226);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -32,34 +31,33 @@
 
 /* .top-sticker */
 .top-sticker {
-  transform: rotate(45deg);
   background-color: rgb(238, 207, 85);
+  transform: rotate(45deg);
   border-radius: 112.5px;
   height: 200px;
   width: 200px;
   position: absolute;
   right: 80px;
   top: 0;
-  z-index: 10;
+  z-index: 11;
 }
 
 /* .bottom-sticker */
 .bottom-sticker {
-  transform: rotate(45deg);
   background-color: rgb(238, 207, 85);
+  transform: rotate(45deg);
   border-radius: 100px;
   position: absolute;
   height: 175px;
   width: 175px;
-  right: 10px;
-  top: 150px;
+  right: 0px;
+  top: 160px;
   z-index: 10;
 }
 
 /* .card */
 .card {
   align-items: center;
-  background-color: rgb(237, 231, 159);
   border: 1px solid black;
   border-radius: 10px;
   display: inline-flex;
@@ -80,6 +78,19 @@
   margin: auto;
   width: fit-content;
   min-height: 500px;
+}
+
+.dark-toggle {
+  font-weight: bolder;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  left: 5px;
+}
+
+.dark-toggle h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /* .delete-button */
@@ -114,9 +125,9 @@
 
 /* .display-component */
 .display-component {
-  background-color: rgb(246, 183, 183);
   min-width: 500px;
   padding: 10px;
+  margin: 25px;
 }
 
 .filter-sort {
@@ -193,7 +204,6 @@
 
 /* .page */
 .page {
-  background-color: #d37373;
   position: relative;
   transition: opacity 0.5s ease-in-out;
   width: 90%;
@@ -239,6 +249,13 @@
   align-content: center;
   border-right: 1px solid black;
   padding: 5px 5px 0 5px;
+}
+
+.weather-component {
+  background-color: rgb(110, 86, 148);
+  min-width: 500px;
+  padding: 10px;
+  margin: 25px;
 }
 
 /* .weather-search h1 */

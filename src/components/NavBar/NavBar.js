@@ -3,10 +3,14 @@ import React from "react";
 import logo from "../../images/bike-logo.jpg";
 import { Link } from "react-router-dom";
 
-function NavBar({ backendOn }) {
+function NavBar({ backendOn, darkMode }) {
   return (
     <div className="nav-bar">
-      <AppBar color="secondary" position="fixed" style={{ zIndex: "9" }}>
+      <AppBar
+        color={darkMode ? "secondary" : "success"}
+        position="fixed"
+        style={{ zIndex: "9" }}
+      >
         <Box>
           <Link to="/">
             <Button>

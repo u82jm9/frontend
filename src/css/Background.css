@@ -1,0 +1,20 @@
+.App-light {
+  background-color: rgb(248, 226, 226);
+}
+.App-dark {
+  background-color: rgb(49, 49, 49);
+}
+
+.display-component-light {
+  background-color: rgb(246, 183, 183);
+}
+.display-component-dark {
+  background-color: navy;
+}
+
+.page-light {
+  background-color: #d37373;
+}
+.page-dark {
+  background-color: rgb(69, 69, 218);
+}

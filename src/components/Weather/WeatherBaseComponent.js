@@ -6,10 +6,10 @@ import SmallWeatherDisplay from "./SmallWeatherDisplayTable";
 import MediumWeatherDisplay from "./MediumWeatherDisplayTable";
 import LargeWeatherDisplay from "./LargeWeatherDisplayTable";
 import Logger from "../Logger";
-import NavBar from "../NavBar/NavBar";
 
 const WEATHER_API = "https://weatherapi-com.p.rapidapi.com/forecast.json";
 function WeatherBaseComponent() {
+  const [darkMode, setDarkMode] = useState(false);
   const [city, setCity] = useState("Edinburgh");
   const [forecast, setForecast] = useState([]);
   const [tableSize, setTableSize] = useState(1);
@@ -20,7 +20,12 @@ function WeatherBaseComponent() {
     if (forecast.length === 0) {
       getWeatherForecast("Edinburgh");
     }
+    getDarkModeFromLocalStorage();
   }, []);
+
+  function getDarkModeFromLocalStorage() {
+    setDarkMode(JSON.parse(localStorage.getItem("darkMode")));
+  }
 
   function changeTableSize(command) {
     if (command === "up") {
@@ -165,7 +170,7 @@ function WeatherBaseComponent() {
 
   return (
     <div className="component">
-      <div className="display-component">
+      <div className="weather-component">
         <h1>Weather Forecast!!</h1>
         <h2>{city}</h2>
         <WeatherSearch getWeather={getWeatherForecast} />

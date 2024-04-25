@@ -104,7 +104,7 @@ function StickyNoteComponent(backendOn) {
         </div>
       )}
       <h1>Sticky Notes!</h1>
-      <div className={isLoading ? "dark" : "light"}>
+      <div>
         <div>
           <Button
             variant="contained"

@@ -34,7 +34,7 @@ function FilmQuoteComponent() {
         <div>
           <QuoteDisplayer quote={randomQuote} />
           <Button variant="contained" onClick={() => setShowList(true)}>
-            Show quote list
+            Show all Quotes
           </Button>
           <Button
             variant="contained"

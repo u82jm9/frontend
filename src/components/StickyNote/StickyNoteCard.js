@@ -63,7 +63,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
 
   return (
     <div
-      className={`card ${rotate ? "rotate" : ""}`}
+      className={`card ${rotate && "rotate"}`}
       onMouseEnter={() => showAlert("Double Click to Edit Note!")}
       onDoubleClick={() => {
         setEditing(true);
@@ -109,16 +109,17 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
             </div>
           ) : (
             <div>
-                <Button className="delete-button"
-                  variant="contained"
-                  color="error"
-                  onClick={() => {
-                    deleteNote(note);
-                  }}
-                >
-                  X
-                </Button>
-                              {note.complete ? (
+              <Button
+                className="delete-button"
+                variant="contained"
+                color="error"
+                onClick={() => {
+                  deleteNote(note);
+                }}
+              >
+                X
+              </Button>
+              {note.complete ? (
                 <div className="note-title note-done">
                   <h1>{note.title}</h1>
                 </div>
