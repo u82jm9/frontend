@@ -58,7 +58,7 @@ function App() {
           path="/Jokes"
           element={
             <PageLayout backendOn={backendOn}>
-              <JokeComponent />
+              <JokeComponent backendOn={backendOn} />
             </PageLayout>
           }
         />

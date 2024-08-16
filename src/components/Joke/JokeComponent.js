@@ -12,6 +12,7 @@ import RandomJoke from "./RandomJoke";
 import CategoryJoke from "./CategoryJoke";
 import Logger from "../Logger";
 
+const SAVE_JOKE_API = "http://localhost:8088/demo/Test/SaveThis";
 const RANDOM_JOKE_API_URL = "https://dad-jokes.p.rapidapi.com/random/joke";
 const GET_JOKE_BY_CATEGORY_API_URL =
   "https://world-of-jokes1.p.rapidapi.com/v1/jokes/jokes-by-category";
@@ -24,7 +25,7 @@ const api = axios.create({
   },
 });
 
-function JokeComponent() {
+function JokeComponent(backendOn) {
   const [joke, setJoke] = useState(null);
   const [displayingJoke, setDisplayingJoke] = useState(false);
   const [jokeType, setJokeType] = useState(false);
@@ -40,16 +41,18 @@ function JokeComponent() {
 
   useEffect(() => {
     Logger.infoLog("Joke Component did mount.");
-    async function fetchData() {
-      try {
-        const categoriesData = await getCategories();
-        setCategories(categoriesData);
-      } catch (err) {
-        Logger.errorLog(err);
-      }
-    }
     fetchData();
+    setShowCategories(true);
   }, []);
+
+  async function fetchData() {
+    try {
+      const categoriesData = await getCategories();
+      setCategories(categoriesData);
+    } catch (err) {
+      Logger.errorLog(err);
+    }
+  }
 
   async function getRandomJoke() {
     try {
@@ -80,11 +83,16 @@ function JokeComponent() {
       Logger.infoLog("Getting Categories!");
       const r = await api.get(GET_CATEGORIES_API_URL);
       Logger.warnLog("Categories returned: ", r.data);
-      if (r.data.message && r.data.message.includes("exceeded")) {
-        Logger.errorLog(
-          "Returning empty array due to reaching limit on Categories API"
-        );
-        return [];
+      if (r.data.message) {
+        if (
+          r.data.message.includes("unreachable") &&
+          r.data.message.includes("exceeded")
+        ) {
+          Logger.errorLog(
+            "Returning empty array due to reaching Categories API not returning"
+          );
+          return [];
+        }
       } else {
         return r.data;
       }
@@ -121,6 +129,20 @@ function JokeComponent() {
     let r = 0 + Math.floor(Math.random() * numberOfJokes);
     setJoke(listOfCategoryJokes[r]);
     Logger.warnLog("Setting category joke to: " + listOfCategoryJokes[r]);
+  }
+
+  function saveJoke() {
+    const j = {
+      setup: joke.setup,
+      punchline: joke.punchline,
+      body: joke.body,
+    };
+    Logger.infoLog("Saving Joke!");
+    try {
+      axios.post(SAVE_JOKE_API, j);
+    } catch (err) {
+      Logger.errorLog(err);
+    }
   }
 
   return (
@@ -188,6 +210,16 @@ function JokeComponent() {
                 Surprise me!
               </Button>
             </div>
+          )}
+          {backendOn && (
+            <Button
+              variant="contained"
+              onClick={() => {
+                saveJoke();
+              }}
+            >
+              I like it!
+            </Button>
           )}
         </div>
       )}

@@ -11,6 +11,7 @@ const Logger = {
     };
     try {
       await axios.post(LOGGER_API, log);
+      logToLocalStorage(log);
     } catch (err) {
       console.error(err);
     }
@@ -23,6 +24,7 @@ const Logger = {
       timeStamp: stamp,
     };
     try {
+      await axios.post(LOGGER_API, log);
       logToLocalStorage(log);
     } catch (err) {
       console.error(err);
