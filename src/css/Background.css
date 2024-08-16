@@ -1,20 +1,27 @@
 .App-light {
-  background-color: rgb(248, 226, 226);
+  background-color: #FFC4C5;
 }
 .App-dark {
-  background-color: rgb(49, 49, 49);
+  background-color: #B3898A;
+}
+
+.component-light {
+  background-color: #FAD7CF;
+}
+.component-dark {
+  background-color: #B36266;
 }
 
 .display-component-light {
-  background-color: rgb(246, 183, 183);
+  background-color: #AA85E6;
 }
 .display-component-dark {
-  background-color: navy;
+  background-color: #7F63AB
 }
 
-.page-light {
-  background-color: #d37373;
+/* .page-light {
+  background-color: #B8FFCD;
 }
 .page-dark {
-  background-color: rgb(69, 69, 218);
-}
+  background-color: #81B390;
+} */

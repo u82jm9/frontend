@@ -29,15 +29,19 @@
   text-align: center;
 }
 
+.bank-holiday {
+  font-size: small;
+}
+
 /* .top-sticker */
 .top-sticker {
   background-color: rgb(238, 207, 85);
   transform: rotate(45deg);
   border-radius: 112.5px;
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   position: absolute;
-  right: 80px;
+  right: 60px;
   top: 0;
   z-index: 11;
 }
@@ -48,10 +52,10 @@
   transform: rotate(45deg);
   border-radius: 100px;
   position: absolute;
-  height: 175px;
-  width: 175px;
+  height: 125px;
+  width: 125px;
   right: 0px;
-  top: 160px;
+  top: 120px;
   z-index: 10;
 }
 
@@ -76,6 +80,8 @@
 /* .component */
 .component {
   margin: auto;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
   width: fit-content;
   min-height: 500px;
 }
@@ -252,7 +258,6 @@
 }
 
 .weather-component {
-  background-color: rgb(110, 86, 148);
   min-width: 500px;
   padding: 10px;
   margin: 25px;
