@@ -7,8 +7,12 @@ function PageLayout({ children, backendOn }) {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
+    logBackEndOnToLocalStorage();
+  }, [backendOn]);
+
+  useEffect(() => {
     logDarkModeToLocalStorage();
-  }, darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     handleScroll();
@@ -17,6 +21,10 @@ function PageLayout({ children, backendOn }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  function logBackEndOnToLocalStorage() {
+    localStorage.setItem("backEndOn", JSON.stringify(backendOn));
+  }
 
   function logDarkModeToLocalStorage() {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -44,7 +52,6 @@ function PageLayout({ children, backendOn }) {
             darkMode ? "component-dark" : "component-light"
           }`}
         >
-          <NavBar darkMode={darkMode} backendOn={backendOn} />
           <div className="dark-toggle">
             <h3>Dark Mode</h3>
             <Switch
@@ -53,6 +60,8 @@ function PageLayout({ children, backendOn }) {
               }}
             />
           </div>
+          <NavBar darkMode={darkMode} backendOn={backendOn} />
+
           <div
             className={`display-component ${
               darkMode ? "display-component-dark" : "display-component-light"

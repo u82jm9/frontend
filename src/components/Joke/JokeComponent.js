@@ -25,7 +25,7 @@ const api = axios.create({
   },
 });
 
-function JokeComponent(backendOn) {
+function JokeComponent({ backendOn }) {
   const [joke, setJoke] = useState(null);
   const [displayingJoke, setDisplayingJoke] = useState(false);
   const [jokeType, setJokeType] = useState(false);
