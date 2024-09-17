@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const BikePartsTable = ({ parts }) => {
+  const [linkOutOfDate, setLinkOutOfDate] = useState(false);
+  useEffect(() => {
+    setLinkOutOfDate(false);
+    checkLinksAreInDate();
+  }, [parts.listOfParts]);
+
+  function checkLinksAreInDate() {
+    if (parts.listOfParts.some((part) => !part.isUpToDate)) {
+      setLinkOutOfDate(true);
+    }
+  }
+
   return (
     <div>
       <h1>Parts Table!</h1>
@@ -13,6 +25,7 @@ const BikePartsTable = ({ parts }) => {
               <th>Part Name</th>
               <th>Price</th>
               <th>Link</th>
+              {linkOutOfDate && <th>Last Updated</th>}
             </tr>
           </thead>
           <tbody>
@@ -20,10 +33,15 @@ const BikePartsTable = ({ parts }) => {
               <tr key={i}>
                 <td>{part.component}</td>
                 <td>{part.name}</td>
-                <td>£{part.price}</td>
+                {part.isUpToDate ? <td>£{part.price}</td> : <td>£-.--</td>}
                 <td>
                   <a href={part.link}>{part.link}</a>
                 </td>
+                {part.isUpToDate ? (
+                  <td>Today</td>
+                ) : (
+                  <td>{part.dateLastUpdated}</td>
+                )}
               </tr>
             ))}
           </tbody>

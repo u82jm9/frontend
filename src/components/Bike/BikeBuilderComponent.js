@@ -132,9 +132,7 @@ function BikeBuilderComponent(backendOn) {
     } catch (err) {
       Logger.errorLog(err);
     } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1500);
+      setIsLoading(false);
     }
   }
 
@@ -160,7 +158,7 @@ function BikeBuilderComponent(backendOn) {
           <img src={dragonBallGif} alt="Sweet leveling up gif!" />
         </div>
       )}
-      <div className={isLoading ? "dark" : "light"}>
+      <div className="light">
         <h1>Welcome to the bike Builder</h1>
         {editMode && (
           <BikeMenuComponent
