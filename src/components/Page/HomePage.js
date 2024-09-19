@@ -3,7 +3,7 @@ import BankHolidayComponent from "../BankHoliday/BankHolidayComponent";
 import WeatherBaseComponet from "../Weather/WeatherBaseComponent";
 import dragonBallGif from "../../gifs/dragon_ball_form.gif";
 
-function HomePage() {
+function HomePage({ alertMethod }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function HomePage() {
       )}
       <BankHolidayComponent />
       <div className={isLoading ? "loading" : "loadingComplete"}>
-        <WeatherBaseComponet />
+        <WeatherBaseComponet alertMethod={alertMethod} />
       </div>
     </>
   );

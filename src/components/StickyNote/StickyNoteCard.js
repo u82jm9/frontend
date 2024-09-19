@@ -42,6 +42,12 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
     setNewMessage("");
   };
 
+  const mouseEntered = () => {
+    if (!editing) {
+      showAlert("Double Click to Edit Note!");
+    }
+  };
+
   const handleSave = async () => {
     try {
       const messageMap = {};
@@ -53,6 +59,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
         title: editedTitle,
         messageMap,
       };
+      showAlert("Note Saved!");
       Logger.warnLog("Note saved: " + updatedNote);
       updateNote(updatedNote);
       setEditing(false);
@@ -64,7 +71,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
   return (
     <div
       className={`card ${rotate && "rotate"}`}
-      onMouseEnter={() => showAlert("Double Click to Edit Note!")}
+      onMouseEnter={() => mouseEntered}
       onDoubleClick={() => {
         setEditing(true);
         setRotate(true);
@@ -114,6 +121,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
                 variant="contained"
                 color="error"
                 onClick={() => {
+                  showAlert("Note deleted!");
                   deleteNote(note);
                 }}
               >

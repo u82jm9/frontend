@@ -8,7 +8,7 @@ import LargeWeatherDisplay from "./LargeWeatherDisplayTable";
 import Logger from "../Logger";
 
 const WEATHER_API = "https://weatherapi-com.p.rapidapi.com/forecast.json";
-function WeatherBaseComponent() {
+function WeatherBaseComponent({ alertMethod }) {
   const [darkMode, setDarkMode] = useState(false);
   const [city, setCity] = useState("Edinburgh");
   const [forecast, setForecast] = useState([]);
@@ -59,7 +59,12 @@ function WeatherBaseComponent() {
       let w = await axios.request(options);
       setCity(w.data.location.name);
       changeDaysText(w.data.forecast.forecastday);
+      alertMethod("success", "Got the Weather Forecast!!");
     } catch (err) {
+      alertMethod(
+        "error",
+        "Sorry, something happened, could not retrieve Weather Forecast :("
+      );
       Logger.errorLog("Failed to get Forecast");
       Logger.errorLog(err);
     }

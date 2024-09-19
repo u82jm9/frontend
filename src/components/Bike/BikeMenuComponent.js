@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { GiCartwheel } from "react-icons/gi";
 import { Box, FormControl, InputLabel, Input } from "@mui/material";
 import Logger from "../Logger";
 
+const BIKE_BUILDER_API_URL = "http://localhost:8088/demo/FullBike/";
 const BikeMenuComponent = ({
   resetOptions,
   updateBikeAndOptions,
@@ -11,7 +13,6 @@ const BikeMenuComponent = ({
 }) => {
   const [showChangeName, setShowChangeName] = useState(true);
   const [selectionMade, setSelectionMade] = useState(false);
-  let timer = null;
 
   async function handleNameChange(e) {
     Logger.infoLog("Changing Bike name.");
@@ -19,9 +20,9 @@ const BikeMenuComponent = ({
       const { id, value } = e.target;
       const tempBike = await { ...bike, [id]: value };
       Logger.warnLog("Bike Name change method! Bike: ", tempBike);
+      axios.post(BIKE_BUILDER_API_URL + "DeleteBike", bike);
       updateBikeAndOptions(tempBike, options);
-      clearTimeout(timer);
-      timer = setTimeout(() => {
+      setTimeout(() => {
         setShowChangeName(false);
       }, 3000);
     } catch (err) {
@@ -81,7 +82,7 @@ const BikeMenuComponent = ({
                 <Input
                   type="text"
                   id="bikeName"
-                  value={bike.bikeName}
+                  placeholder={bike.bikeName}
                   onChange={(e) => handleNameChange(e)}
                   onBlur={() => setShowChangeName(false)}
                 ></Input>

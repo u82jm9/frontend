@@ -25,7 +25,7 @@ const api = axios.create({
   },
 });
 
-function JokeComponent({ backendOn }) {
+function JokeComponent({ backendOn, alertMethod }) {
   const [joke, setJoke] = useState(null);
   const [displayingJoke, setDisplayingJoke] = useState(false);
   const [jokeType, setJokeType] = useState(false);
@@ -140,8 +140,10 @@ function JokeComponent({ backendOn }) {
     Logger.infoLog("Saving Joke!");
     try {
       axios.post(SAVE_JOKE_API, j);
+      alertMethod("success", "Joke Saved!");
     } catch (err) {
       Logger.errorLog(err);
+      alertMethod("error", "Sorry, could not save Joke :(");
     }
   }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Alert from "@mui/material/Alert";
 import axios from "axios";
 import "../../css/App.css";
 import "../../css/Background.css";
@@ -15,8 +16,13 @@ const BACK_END_API = "http://localhost:8088/demo/Test/";
 const pagesRequireBackend = ["/Notes", "/Bikes"];
 function App() {
   const [backendOn, setBackendOn] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("");
+
   let location = useLocation();
   let navigate = useNavigate();
+
   useEffect(() => {
     checkBackend();
     const interval = setInterval(checkBackend, 5000);
@@ -43,6 +49,17 @@ function App() {
     }
   }
 
+  function displayAlertMessage(severity, message) {
+    setAlertSeverity(severity);
+    setAlertMessage(message);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+      setAlertMessage("");
+      setAlertSeverity("");
+    }, 2500);
+  }
+
   return (
     <React.StrictMode>
       <Routes>
@@ -50,7 +67,10 @@ function App() {
           index
           element={
             <PageLayout backendOn={backendOn}>
-              <HomePage />
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <HomePage alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />
@@ -58,7 +78,13 @@ function App() {
           path="/Jokes"
           element={
             <PageLayout backendOn={backendOn}>
-              <JokeComponent backendOn={backendOn} />
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <JokeComponent
+                alertMethod={displayAlertMessage}
+                backendOn={backendOn}
+              />
             </PageLayout>
           }
         />
@@ -74,7 +100,10 @@ function App() {
           path="/Notes"
           element={
             <PageLayout backendOn={backendOn}>
-              <StickyNoteComponent />
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <StickyNoteComponent alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />
@@ -82,7 +111,10 @@ function App() {
           path="/Bikes"
           element={
             <PageLayout backendOn={backendOn}>
-              <BikeBuilderComponent />
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <BikeBuilderComponent alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />

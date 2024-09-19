@@ -1,4 +1,9 @@
 /* Base styles */
+/*padding: 25px 50px 75px 100px;
+top padding is 25px
+right padding is 50px
+bottom padding is 75px
+left padding is 100px */
 
 /* .alert */
 .alert {
@@ -93,11 +98,24 @@
   border-radius: 5px;
   position: absolute;
   left: 5px;
+  max-height: 50px;
+  min-width: 75px;
 }
 
 .dark-toggle h3 {
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
+  font-size: small;
+}
+
+.dark-toggle input {
+  max-height: 30px;
+}
+
+.dark-toggle span {
+  padding: 0, 10px, 0, 10px;
+  max-width: 50px;
+  max-height: 30px;
 }
 
 /* .delete-button */

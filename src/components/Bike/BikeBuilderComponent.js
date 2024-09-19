@@ -11,7 +11,7 @@ import Logger from "../Logger";
 
 const BIKE_OPTIONS_API_URL = "http://localhost:8088/demo/Options/";
 const BIKE_BUILDER_API_URL = "http://localhost:8088/demo/FullBike/";
-function BikeBuilderComponent(backendOn) {
+function BikeBuilderComponent({ alertMethod, backendOn }) {
   const [isLoading, setIsLoading] = useState(false);
   const [databaseBikes, setDatabaseBikes] = useState([]);
   const [updateBikeList, setUpdateBikeList] = useState(true);
@@ -89,6 +89,7 @@ function BikeBuilderComponent(backendOn) {
     setEditMode(true);
     startNewBike();
     getOptionsForNewBike();
+    alertMethod("success", "New Bike Started!");
   }
 
   async function getOptionsForNewBike() {
@@ -129,10 +130,14 @@ function BikeBuilderComponent(backendOn) {
       );
       Logger.warnLog("Parts returned: ", b.data);
       setParts(b.data);
+      alertMethod("success", "Retrieved parts list for Bike!!");
     } catch (err) {
+      alertMethod("error", "Sorry could not retrieve parts list for Bike :(");
       Logger.errorLog(err);
     } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1600);
     }
   }
 
@@ -145,8 +150,10 @@ function BikeBuilderComponent(backendOn) {
   function deleteBike(bike) {
     try {
       Logger.infoLog("Deleting single Design bike");
-      axios.delete(BIKE_BUILDER_API_URL + "DeleteBike", bike);
+      axios.post(BIKE_BUILDER_API_URL + "DeleteBike", bike);
+      alertMethod("info", "Bike deleted!");
     } catch (err) {
+      alertMethod("error", "Sorry could not delete Bike :(");
       Logger.errorLog(err);
     }
   }

@@ -7,12 +7,10 @@ import StickyNoteCard from "./StickyNoteCard";
 import Logger from "../Logger";
 
 const STICKY_NOTE_API_URL = "http://localhost:8088/demo/StickyNotes/";
-function StickyNoteComponent(backendOn) {
+function StickyNoteComponent({ alertMethod, backendOn }) {
   const [stickyNotes, setStickyNotes] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     getStickyNotes();
@@ -51,6 +49,7 @@ function StickyNoteComponent(backendOn) {
         STICKY_NOTE_API_URL + "DeleteNote/" + note.stickyNoteId
       );
       getStickyNotes();
+      alertMethod("info", "Sticky Note Deleted");
     } catch (err) {
       Logger.errorLog(err);
     }
@@ -63,6 +62,7 @@ function StickyNoteComponent(backendOn) {
       await axios.delete(STICKY_NOTE_API_URL + "DeleteAllNotes");
       getStickyNotes();
     } catch (err) {
+      alertMethod("error", "Sorry could not Delete all notes :(");
       Logger.errorLog(err);
     }
   }
@@ -78,6 +78,7 @@ function StickyNoteComponent(backendOn) {
         noteComplete: false,
       });
       getStickyNotes();
+      alertMethod("success", "New Note Created!");
     } catch (err) {
       Logger.errorLog(err);
     } finally {
@@ -86,15 +87,6 @@ function StickyNoteComponent(backendOn) {
       }, 2000);
     }
   }
-
-  const showAlertMessage = (message) => {
-    setShowAlert(true);
-    setAlertMessage(message);
-    setTimeout(() => {
-      setShowAlert(false);
-      setAlertMessage("");
-    }, 2000);
-  };
 
   return (
     <>
@@ -118,17 +110,7 @@ function StickyNoteComponent(backendOn) {
             Delete All
           </Button>
         </div>
-        {showAlert ? (
-          <div className="alert">
-            <h1>{alertMessage}</h1>
-            <Button
-              className="dismiss-button"
-              onClick={() => setShowAlert(false)}
-            >
-              X
-            </Button>
-          </div>
-        ) : null}
+
         {showForm ? (
           <StickyNoteForm addNote={createNewNote} />
         ) : (
@@ -139,7 +121,6 @@ function StickyNoteComponent(backendOn) {
                 updateNote={editStickyNote}
                 note={note}
                 key={i}
-                showAlert={showAlertMessage}
               />
             ))}
           </div>

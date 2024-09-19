@@ -33,15 +33,11 @@ const BikePartsTable = ({ parts }) => {
               <tr key={i}>
                 <td>{part.component}</td>
                 <td>{part.name}</td>
-                {part.isUpToDate ? <td>£{part.price}</td> : <td>£-.--</td>}
+                {part.isUpToDate ? <td>£{part.price}</td> : <td>NA</td>}
                 <td>
                   <a href={part.link}>{part.link}</a>
                 </td>
-                {part.isUpToDate ? (
-                  <td>Today</td>
-                ) : (
-                  <td>{part.dateLastUpdated}</td>
-                )}
+                {linkOutOfDate && <td>{part.dateLastUpdated}</td>}
               </tr>
             ))}
           </tbody>
