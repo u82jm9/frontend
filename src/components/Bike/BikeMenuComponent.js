@@ -64,11 +64,17 @@ const BikeMenuComponent = ({
 
   return (
     <div>
+      <div
+        onMouseEnter={() => {
+          setShowChangeName(true);
+        }}
+      >
+        <h1>{bike.bikeName}</h1>
+      </div>
       <div className="bike-menu">
         <div
           onClick={() => {
             setShowChangeName(true);
-            resetOptions();
           }}
           className="icon menu-item"
         >

@@ -45,6 +45,7 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
       let b = await axios.post(BIKE_BUILDER_API_URL + "UpdateBike", methodBike);
       Logger.warnLog("Update bike: ", b.data);
       changeBike(b.data);
+      setUpdateBikeList(true);
     } catch (err) {
       Logger.errorLog(err);
     }
