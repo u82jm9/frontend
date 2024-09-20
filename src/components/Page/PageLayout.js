@@ -49,20 +49,20 @@ function PageLayout({ children, backendOn }) {
   return (
     <div className={`App ${darkMode ? "App-dark" : "App-light"}`}>
       <div className={`page ${darkMode ? "page-dark" : "page-light"}`}>
-        <div className="dark-toggle">
-          <h3>Dark Mode</h3>
-          <Switch
-            className="toggle-button"
-            onClick={() => {
-              setDarkMode(!darkMode);
-            }}
-          />
-        </div>
         <div
           className={`component ${
             darkMode ? "component-dark" : "component-light"
           }`}
         >
+          <div className="dark-toggle">
+            <h3>Dark Mode</h3>
+            <Switch
+              className="toggle-button"
+              onClick={() => {
+                setDarkMode(!darkMode);
+              }}
+            />
+          </div>
           <NavBar darkMode={darkMode} backendOn={backendOn} />
 
           <div
