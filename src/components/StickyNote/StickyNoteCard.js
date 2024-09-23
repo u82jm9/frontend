@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import OutsideClickHandler from "react-outside-click-handler";
 import Logger from "../Logger";
 
-const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
+const StickyNoteCard = ({ note, updateNote, deleteNote, alertMethod }) => {
   const [editing, setEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(note.title);
   const [editedMessages, setEditedMessages] = useState(
@@ -44,7 +44,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
 
   const mouseEntered = () => {
     if (!editing) {
-      showAlert("Double Click to Edit Note!");
+      alertMethod("Double Click to Edit Note!");
     }
   };
 
@@ -59,7 +59,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
         title: editedTitle,
         messageMap,
       };
-      showAlert("Note Saved!");
+      alertMethod("Note Saved!");
       Logger.warnLog("Note saved: " + updatedNote);
       updateNote(updatedNote);
       setEditing(false);
@@ -121,7 +121,7 @@ const StickyNoteCard = ({ note, updateNote, deleteNote, showAlert }) => {
                 variant="contained"
                 color="error"
                 onClick={() => {
-                  showAlert("Note deleted!");
+                  alertMethod("Note deleted!");
                   deleteNote(note);
                 }}
               >

@@ -72,9 +72,10 @@ left padding is 100px */
   display: inline-flex;
   flex-direction: column;
   margin: 25px 2px 25px 2px;
-  min-height: 300px;
+  min-height: 350px;
   text-align: center;
   width: 250px;
+  background-color: burlywood;
 }
 
 /* .card-display */
@@ -180,7 +181,7 @@ left padding is 100px */
 /* .form-field */
 .form-field {
   flex-direction: column;
-  padding-top: 7px;
+  margin-top: 10px;
   width: 85%;
 }
 
@@ -236,7 +237,7 @@ left padding is 100px */
 
 /* .note-title */
 .note-title {
-  height: 30px;
+  height: fit-content;
 }
 
 /* .page */

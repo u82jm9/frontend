@@ -117,6 +117,7 @@ function StickyNoteComponent({ alertMethod, backendOn }) {
           <div className="note-component">
             {stickyNotes.map((note, i) => (
               <StickyNoteCard
+                alertMethod={alertMethod}
                 deleteNote={deleteStickyNote}
                 updateNote={editStickyNote}
                 note={note}
