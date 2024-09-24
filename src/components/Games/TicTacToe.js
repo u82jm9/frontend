@@ -6,10 +6,7 @@ function TicTacToe() {
   const [player2Score, setPlayer2Score] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isPlayer1, setIsPlayer1] = useState(true);
-  const [winner, setWinner] = useState("");
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
-
-  const MAGIC_BOARD = [4, 3, 8, 9, 5, 1, 2, 7, 6];
   const WINNING_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],

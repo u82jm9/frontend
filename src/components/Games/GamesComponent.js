@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
-import Logger from "../Logger";
 import TicTacToe from "./TicTacToe";
 
-function GamesComponent({ alertMethod }) {
+function GamesComponent() {
   return (
     <>
       <h1>Games games games !!!!</h1>
