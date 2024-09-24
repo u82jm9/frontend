@@ -16,6 +16,14 @@ function NavBar({ backendOn, darkMode }) {
             <Button>
               <img src={logo} alt="Cartoon Bike Logo" />
             </Button>
+            <Button id="home" style={{ color: "black", fontWeight: "1000" }}>
+              Home
+            </Button>
+          </Link>
+          <Link to="/Games">
+            <Button id="games" style={{ color: "black", fontWeight: "1000" }}>
+              Games
+            </Button>
           </Link>
           <Link to="/Jokes">
             <Button id="jokes" style={{ color: "black", fontWeight: "1000" }}>

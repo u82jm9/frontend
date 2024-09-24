@@ -5,6 +5,7 @@ import "../../css/App.css";
 import "../../css/Background.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import PageLayout from "./PageLayout";
+import GamesComponent from "../Games/GamesComponent";
 import HomePage from "./HomePage";
 import JokeComponent from "../Joke/JokeComponent";
 import FilmQuoteComponent from "../Quote/FilmQuoteComponent";
@@ -71,6 +72,17 @@ function App() {
                 <Alert severity={alertSeverity}>{alertMessage}</Alert>
               )}
               <HomePage alertMethod={displayAlertMessage} />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/Games"
+          element={
+            <PageLayout backendOn={backendOn}>
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <GamesComponent alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />

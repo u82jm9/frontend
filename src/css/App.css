@@ -5,26 +5,6 @@ right padding is 50px
 bottom padding is 75px
 left padding is 100px */
 
-/* .alert */
-.alert {
-  align-items: center;
-  background-color: rgb(122, 204, 247);
-  border-radius: 10px;
-  color: white;
-  display: inline-flex;
-  height: 20px;
-  position: relative;
-  width: 95%;
-  z-index: 1;
-}
-
-.alert h1 {
-  font-size: small;
-  font-weight: bolder;
-  height: 18px;
-  margin: auto;
-}
-
 /* .App */
 .App {
   align-items: center;
@@ -156,6 +136,12 @@ left padding is 100px */
   margin: 25px;
 }
 
+.display-game {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 .display-joke {
   border: 1px solid black;
   border-radius: 10px;
@@ -280,6 +266,26 @@ left padding is 100px */
   height: 90%;
   padding: 5% 0 0 10%;
   width: 90%;
+}
+
+.tic-tac-box {
+  margin: 0.5px;
+  border: 2px dashed black;
+  height: 75px;
+  width: 75px;
+}
+
+.tic-tac-line {
+  display: flex;
+}
+
+.tic-tac-toe {
+  margin: 10px 130px 10px 130px;
+  position: relative;
+  width: 240px;
+  display: grid;
+  align-items: center;
+  background-color: burlywood;
 }
 
 /* .text-box */
