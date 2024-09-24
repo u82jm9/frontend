@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
+import { GiBroadsword, GiCheckedShield } from "react-icons/gi";
 
 function TicTacToe() {
   const [player1Score, setPlayer1Score] = useState(0);
@@ -80,14 +81,7 @@ function TicTacToe() {
   return (
     <div className="display-game">
       <h1>Tic Tac Toe</h1>
-      <Button
-        variant="contained"
-        onClick={() => {
-          resetBoard();
-        }}
-      >
-        Reset Board
-      </Button>
+
       {gameOver && <h2>The Winner is Player {isPlayer1 ? <>2</> : <>1</>}</h2>}
       <div className="tic-tac-toe">
         <div className="tic-tac-line">
@@ -98,7 +92,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[0]}
+            <h1>
+              {board[0] === "" ? null : board[0] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
           <div
             className="tic-tac-box"
@@ -107,7 +107,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[1]}
+            <h1>
+              {board[1] === "" ? null : board[1] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
           <div
             className="tic-tac-box"
@@ -116,7 +122,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[2]}
+            <h1>
+              {board[2] === "" ? null : board[2] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
         </div>
         <div className="tic-tac-line">
@@ -127,7 +139,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[3]}
+            <h1>
+              {board[3] === "" ? null : board[3] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
           <div
             className="tic-tac-box"
@@ -136,7 +154,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[4]}
+            <h1>
+              {board[4] === "" ? null : board[4] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
           <div
             className="tic-tac-box"
@@ -145,7 +169,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[5]}
+            <h1>
+              {board[5] === "" ? null : board[5] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
         </div>
         <div className="tic-tac-line">
@@ -156,7 +186,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[6]}
+            <h1>
+              {board[6] === "" ? null : board[6] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
           <div
             className="tic-tac-box"
@@ -165,7 +201,13 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[7]}
+            <h1>
+              {board[7] === "" ? null : board[7] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
           <div
             className="tic-tac-box"
@@ -174,12 +216,35 @@ function TicTacToe() {
               boxClick(event);
             }}
           >
-            {board[8]}
+            <h1>
+              {board[8] === "" ? null : board[8] === "X" ? (
+                <GiBroadsword />
+              ) : (
+                <GiCheckedShield />
+              )}
+            </h1>
           </div>
         </div>
       </div>
       <h3>Player 1 Score: {player1Score}</h3>
       <h3>Player 2 Score: {player2Score}</h3>
+      <Button
+        variant="contained"
+        onClick={() => {
+          resetBoard();
+        }}
+      >
+        Reset Board
+      </Button>
+      <Button
+        variant="contained"
+        onClick={() => {
+          setPlayer1Score(0);
+          setPlayer2Score(0);
+        }}
+      >
+        Reset Score
+      </Button>
     </div>
   );
 }

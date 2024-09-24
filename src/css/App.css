@@ -140,6 +140,7 @@ left padding is 100px */
   border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .display-joke {
@@ -275,6 +276,11 @@ left padding is 100px */
   width: 75px;
 }
 
+.tic-tac-box:hover {
+  background-color: darkgoldenrod;
+  cursor: pointer;
+}
+
 .tic-tac-line {
   display: flex;
 }
@@ -290,7 +296,8 @@ left padding is 100px */
 
 /* .text-box */
 .text-box {
-  align-content: center;
+  font-size: larger;
+  vertical-align: middle;
   border-right: 1px solid black;
   padding: 5px 5px 0 5px;
 }
