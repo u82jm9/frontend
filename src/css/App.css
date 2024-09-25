@@ -1,9 +1,13 @@
 /* Base styles */
-/*padding: 25px 50px 75px 100px;
+/*
+padding: 25px 50px 75px 100px;
 top padding is 25px
 right padding is 50px
 bottom padding is 75px
-left padding is 100px */
+left padding is 100px 
+margin: 25px 50px - 25px to top and bottom, 50px to left and right 
+padding: 30px 60px - 30px to top and bottom, 60px to left and right 
+*/
 
 /* .App */
 .App {
@@ -14,39 +18,33 @@ left padding is 100px */
   text-align: center;
 }
 
+/* .bank-holiday */
 .bank-holiday {
   font-size: small;
 }
 
-/* .top-sticker */
-.top-sticker {
-  background-color: rgb(238, 207, 85);
-  transform: rotate(45deg);
-  border-radius: 112.5px;
-  height: 150px;
-  width: 150px;
-  position: absolute;
-  right: 60px;
-  top: 0;
-  z-index: 11;
+/* .board-line */
+.board-line {
+  display: flex;
 }
 
 /* .bottom-sticker */
 .bottom-sticker {
   background-color: rgb(238, 207, 85);
-  transform: rotate(45deg);
   border-radius: 100px;
-  position: absolute;
   height: 125px;
-  width: 125px;
+  position: absolute;
   right: 0px;
   top: 120px;
+  transform: rotate(45deg);
+  width: 125px;
   z-index: 10;
 }
 
 /* .card */
 .card {
   align-items: center;
+  background-color: burlywood;
   border: 1px solid black;
   border-radius: 10px;
   display: inline-flex;
@@ -55,7 +53,6 @@ left padding is 100px */
   min-height: 350px;
   text-align: center;
   width: 250px;
-  background-color: burlywood;
 }
 
 /* .card-display */
@@ -67,26 +64,27 @@ left padding is 100px */
 .component {
   margin: auto;
   margin-bottom: 25px;
+  min-height: 500px;
   padding-bottom: 5px;
   width: fit-content;
-  min-height: 500px;
 }
 
+/* .dark-toggle */
 .dark-toggle {
-  z-index: 10;
-  font-weight: bolder;
   border: 1px solid black;
   border-radius: 5px;
-  position: fixed;
-  left: 5px;
+  font-weight: bolder;
   height: 50px;
+  left: 5px;
+  position: fixed;
   width: 75px;
+  z-index: 10;
 }
 
 .dark-toggle h3 {
-  margin-top: 5px;
-  margin-bottom: 0px;
   font-size: small;
+  margin-bottom: 0px;
+  margin-top: 5px;
 }
 
 .dark-toggle input {
@@ -94,15 +92,15 @@ left padding is 100px */
 }
 
 .dark-toggle span {
-  padding: 0, 10px, 0, 10px;
-  max-width: 50px;
   max-height: 30px;
+  max-width: 50px;
+  padding: 0, 10px, 0, 10px;
 }
 
 /* .delete-button */
 .delete-button {
-  left: 95px;
   border-radius: 10px;
+  left: 95px;
   opacity: 0.3;
   position: relative;
   width: 30px;
@@ -131,30 +129,35 @@ left padding is 100px */
 
 /* .display-component */
 .display-component {
+  margin: 25px;
   min-width: 500px;
   padding: 10px;
-  margin: 25px;
 }
 
+/* .display-game */
 .display-game {
+  align-items: center;
   border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 10px;
   padding-bottom: 5px;
 }
 
+/* .display-joke */
 .display-joke {
   border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
+/* .display-quote */
 .display-quote {
   border: 1px solid black;
   border-radius: 10px;
   margin-bottom: 10px;
 }
 
+/* .filter-sort */
 .filter-sort {
   min-width: 250px;
 }
@@ -172,6 +175,22 @@ left padding is 100px */
   width: 85%;
 }
 
+/* .game-board */
+.game-board {
+  align-items: center;
+  background-color: burlywood;
+  display: grid;
+  margin: 0 auto;
+  position: relative;
+  width: fit-content;
+}
+
+/* .loading */
+.loading {
+  opacity: 0.1;
+  z-index: 1;
+}
+
 /* .loading-img-container */
 .loading-img-container {
   left: 50%;
@@ -181,6 +200,14 @@ left padding is 100px */
   z-index: 2;
 }
 
+/* .loadingComplete */
+.loadingComplete {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* .nav-bar */
 .nav-bar {
   min-height: 62px;
 }
@@ -235,9 +262,10 @@ left padding is 100px */
   z-index: 1;
 }
 
+/* .scroll-button */
 .scroll-button {
-  position: fixed;
   bottom: 20px;
+  position: fixed;
   right: 5%;
   z-index: 10;
 }
@@ -269,10 +297,19 @@ left padding is 100px */
   width: 90%;
 }
 
+/* .text-box */
+.text-box {
+  border-right: 1px solid black;
+  font-size: larger;
+  padding: 5px 5px 0 5px;
+  vertical-align: middle;
+}
+
+/* .tic-tac-box */
 .tic-tac-box {
-  margin: 0.5px;
   border: 2px dashed black;
   height: 75px;
+  margin: 0.5px;
   width: 75px;
 }
 
@@ -281,31 +318,28 @@ left padding is 100px */
   cursor: pointer;
 }
 
-.tic-tac-line {
-  display: flex;
+.tile-selected {
+  background-color: darkgoldenrod;
 }
 
-.tic-tac-toe {
-  margin: 10px 130px 10px 130px;
-  position: relative;
-  width: 240px;
-  display: grid;
-  align-items: center;
-  background-color: burlywood;
+/* .top-sticker */
+.top-sticker {
+  background-color: rgb(238, 207, 85);
+  border-radius: 112.5px;
+  height: 150px;
+  position: absolute;
+  right: 60px;
+  top: 0;
+  transform: rotate(45deg);
+  width: 150px;
+  z-index: 11;
 }
 
-/* .text-box */
-.text-box {
-  font-size: larger;
-  vertical-align: middle;
-  border-right: 1px solid black;
-  padding: 5px 5px 0 5px;
-}
-
+/* .weather-component */
 .weather-component {
+  margin: 25px;
   min-width: 500px;
   padding: 10px;
-  margin: 25px;
 }
 
 /* .weather-search h1 */
@@ -333,15 +367,18 @@ left padding is 100px */
   width: 50px;
 }
 
-/* .loading */
-.loading {
-  opacity: 0.1;
-  z-index: 1;
+/* .wordsearch-box */
+.wordsearch-box {
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
 }
 
-/* .loadingComplete */
-.loadingComplete {
-  opacity: 1;
-  position: relative;
-  z-index: 2;
+.wordsearch-box:hover {
+  background-color: darkgoldenrod;
+  cursor: pointer;
+}
+
+.word-strikethrough {
+  text-decoration-line: line-through;
 }

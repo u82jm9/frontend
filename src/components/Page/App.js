@@ -79,7 +79,10 @@ function App() {
           path="/Games"
           element={
             <PageLayout backendOn={backendOn}>
-              <GamesComponent />
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <GamesComponent alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />

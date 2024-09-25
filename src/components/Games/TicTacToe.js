@@ -58,19 +58,14 @@ function TicTacToe() {
         }
       });
     } finally {
-      console.log("Player 1 Moves: ", player1Moves);
-      console.log("Player 2 Moves: ", player2Moves);
       for (let i = 0; i <= 7; i++) {
         const winningOption = WINNING_COMBINATIONS[i];
-        console.log("Winning Option: ", winningOption);
         if (winningOption.every((index) => player1Moves.includes(index))) {
-          console.log("Player 1 Wins");
           setGameOver(true);
           setPlayer1Score(player1Score + 1);
         } else if (
           winningOption.every((index) => player2Moves.includes(index))
         ) {
-          console.log("Player 2 Wins");
           setGameOver(true);
           setPlayer2Score(player2Score + 1);
         }
@@ -83,8 +78,8 @@ function TicTacToe() {
       <h1>Tic Tac Toe</h1>
 
       {gameOver && <h2>The Winner is Player {isPlayer1 ? <>2</> : <>1</>}</h2>}
-      <div className="tic-tac-toe">
-        <div className="tic-tac-line">
+      <div className="game-board">
+        <div className="board-line">
           <div
             className="tic-tac-box"
             id="0"
@@ -131,7 +126,7 @@ function TicTacToe() {
             </h1>
           </div>
         </div>
-        <div className="tic-tac-line">
+        <div className="board-line">
           <div
             className="tic-tac-box"
             id="3"
@@ -178,7 +173,7 @@ function TicTacToe() {
             </h1>
           </div>
         </div>
-        <div className="tic-tac-line">
+        <div className="board-line">
           <div
             className="tic-tac-box"
             id="6"
