@@ -1,7 +1,7 @@
 import TicTacToe from "./TicTacToe";
 import WordSearch from "./WordSearch";
 
-function GamesComponent(alertMethod) {
+function GamesComponent({ alertMethod }) {
   return (
     <>
       <h1>Games games games !!!!</h1>

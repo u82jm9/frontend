@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 
-function WordSearch(displayAlert) {
+function WordSearch({ displayAlert }) {
   const alphabet = [
     "A",
     "B",
