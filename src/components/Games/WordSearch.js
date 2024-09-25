@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-import {
-  Collapse,
-  List,
-  ListItemButton,
-  ListItemText,
-  Button,
-} from "@mui/material";
+import { Collapse, List, ListItemButton, ListItemText } from "@mui/material";
 
 function WordSearch({ displayAlert }) {
   const alphabet = [
@@ -93,7 +87,7 @@ function WordSearch({ displayAlert }) {
     "Famous Inventions",
   ];
   const [showPuzzles, setShowPuzzles] = useState(false);
-  const [foundIndex, setFoundIndex] = useState(null);
+  const [foundIndexes, setFoundIndexes] = useState([]);
   const [wordsToFind, setWordsToFind] = useState(cityCapitols);
   const [wordsAdded, setWordsAdded] = useState([]);
   const [puzzle, setPuzzle] = useState([]);
@@ -208,12 +202,14 @@ function WordSearch({ displayAlert }) {
 
   function checkWordFound() {
     let characters = selection.map(([r, c]) => puzzle[r][c]).join("");
+    let tempIndexes = [...foundIndexes];
     console.log("Characters: ", characters);
     const index = wordsAdded.findIndex((word) => word === characters);
     if (index !== -1) {
       console.log("Word found at index:", index, "Word:", wordsAdded[index]);
       displayAlert("success", "You found a word!!");
-      setFoundIndex(index);
+      tempIndexes.push(index);
+      setFoundIndexes(tempIndexes);
       setTimeout(() => {
         setSelection([]);
       }, 1500);
@@ -280,7 +276,9 @@ function WordSearch({ displayAlert }) {
         {wordsAdded.map((w, i) => (
           <p
             key={i}
-            className={`${i === foundIndex ? "word-strikethrough" : "word"}`}
+            className={`${
+              foundIndexes.includes(i) ? "word-strikethrough" : "word"
+            }`}
           >
             {w}
           </p>
