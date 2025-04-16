@@ -43,7 +43,7 @@ function WordSearch({ displayAlert }) {
     ["B", "E", "I", "J", "I", "N", "G"],
     ["W", "E", "L", "L", "I", "N", "G", "T", "O", "N"],
     ["C", "A", "N", "B", "E", "R", "R", "A"],
-    ["T", "H", "I", "M", "P", "H", "U"],
+    ["H", "E", "L", "S", "I", "N", "K", "I"],
   ];
   const olympicSports = [
     ["B", "A", "S", "K", "E", "T", "B", "A", "L", "L"],

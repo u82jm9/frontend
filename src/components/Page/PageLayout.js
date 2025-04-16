@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import GoogleSearch from "../GoogleSearch/GoogleSearch";
 import { Button, Switch } from "@mui/material";
 import NavBar from "../NavBar/NavBar";
 
@@ -64,6 +65,7 @@ function PageLayout({ children, backendOn }) {
             />
           </div>
           <NavBar darkMode={darkMode} backendOn={backendOn} />
+        <GoogleSearch />
 
           <div
             className={`display-component ${

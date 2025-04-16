@@ -328,8 +328,8 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   border-radius: 112.5px;
   height: 150px;
   position: absolute;
-  right: 60px;
-  top: 0;
+  right: 125px;
+  top: 0px; 
   transform: rotate(45deg);
   width: 150px;
   z-index: 11;
