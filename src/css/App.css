@@ -14,6 +14,7 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100vh;
   text-align: center;
 }
@@ -131,7 +132,7 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
 .display-component {
   margin: 25px;
   min-width: 500px;
-  padding: 10px;
+  padding-bottom: 10px;
 }
 
 /* .display-game */
@@ -186,7 +187,20 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
 }
 
 .google-calendar {
-  margin: 25px;
+  margin: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.google-calendar-title {
+  margin: 5px;
+}
+
+.google-calendar-display {
+  margin: 5px;
+}
+
+.google-search {
 }
 
 /* .loading */
@@ -213,7 +227,7 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
 
 /* .nav-bar */
 .nav-bar {
-  min-height: 62px;
+  min-height: 53px;
 }
 
 /* .nav-bar img */
@@ -262,7 +276,7 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
 .page {
   position: relative;
   transition: opacity 0.5s ease-in-out;
-  width: 90%;
+  width: 100%;
   z-index: 1;
 }
 
