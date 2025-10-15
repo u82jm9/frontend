@@ -185,6 +185,10 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: fit-content;
 }
 
+.google-calendar {
+  margin: 25px;
+}
+
 /* .loading */
 .loading {
   opacity: 0.1;

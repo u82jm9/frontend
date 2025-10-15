@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import GoogleSearch from "../GoogleSearch/GoogleSearch";
+import { useEffect, useState } from "react";
+import GoogleSearch from "../Google/GoogleSearch";
 import { Button, Switch } from "@mui/material";
 import NavBar from "../NavBar/NavBar";
 
@@ -51,9 +51,8 @@ function PageLayout({ children, backendOn }) {
     <div className={`App ${darkMode ? "App-dark" : "App-light"}`}>
       <div className={`page ${darkMode ? "page-dark" : "page-light"}`}>
         <div
-          className={`component ${
-            darkMode ? "component-dark" : "component-light"
-          }`}
+          className={`component ${darkMode ? "component-dark" : "component-light"
+            }`}
         >
           <div className="dark-toggle">
             <h3>Dark Mode</h3>
@@ -65,12 +64,11 @@ function PageLayout({ children, backendOn }) {
             />
           </div>
           <NavBar darkMode={darkMode} backendOn={backendOn} />
-        <GoogleSearch />
+          <GoogleSearch />
 
           <div
-            className={`display-component ${
-              darkMode ? "display-component-dark" : "display-component-light"
-            }`}
+            className={`display-component ${darkMode ? "display-component-dark" : "display-component-light"
+              }`}
           >
             {children}
           </div>
