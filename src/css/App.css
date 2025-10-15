@@ -262,6 +262,52 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   z-index: 1;
 }
 
+.recipe-component {
+  font-size: larger;
+}
+
+.recipe-component img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
+.recipe-component ul {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  list-style-type: none;
+  text-align: left;
+}
+
+.recipe-display {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.recipe-instructions li {
+  width: fit-content;
+  padding-bottom: 20px;
+}
+
+.recipe-instructions ul {
+  width: fit-content;
+  padding: 0px;
+}
+
+.recipe-header {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
 /* .scroll-button */
 .scroll-button {
   bottom: 20px;

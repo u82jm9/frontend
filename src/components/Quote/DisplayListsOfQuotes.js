@@ -43,7 +43,8 @@ const DisplayListsOfQuotes = ({ allQuotes }) => {
   }
 
   function handleSortClick(s) {
-    Logger.infoLog("Sorting Quotes by: " + s);
+    let message = "Sorting Quotes by: " + s.toString();
+    Logger.infoLog(message);
     let sortedList = [...displayList];
     if (s === "film") {
       Logger.warnLog("Sorting quotes by Film");

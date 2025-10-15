@@ -8,6 +8,7 @@ import PageLayout from "./PageLayout";
 import GamesComponent from "../Games/GamesComponent";
 import HomePage from "./HomePage";
 import JokeComponent from "../Joke/JokeComponent";
+import RecipeComponent from "../Recipe/RecipeComponent";
 import FilmQuoteComponent from "../Quote/FilmQuoteComponent";
 import StickyNoteComponent from "../StickyNote/StickyNoteComponent";
 import BikeBuilderComponent from "../Bike/BikeBuilderComponent";
@@ -116,6 +117,17 @@ function App() {
                 <Alert severity={alertSeverity}>{alertMessage}</Alert>
               )}
               <StickyNoteComponent alertMethod={displayAlertMessage} />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/Recipes"
+          element={
+            <PageLayout backendOn={backendOn}>
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <RecipeComponent alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />

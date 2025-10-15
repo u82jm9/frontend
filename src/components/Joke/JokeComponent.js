@@ -37,7 +37,8 @@ function JokeComponent({ backendOn, alertMethod }) {
     try {
       Logger.infoLog("Getting Categories!");
       const r = await axios.get(GET_CATEGORIES_API_URL);
-      Logger.warnLog("Categories returned: ", r.data);
+      let message = "Categories returned: " + r.data.categories.toString();
+      Logger.warnLog(message);
       setCategories(r.data.categories);
     } catch (err) {
       Logger.errorLog(err);
@@ -55,7 +56,8 @@ function JokeComponent({ backendOn, alertMethod }) {
       } else {
         setIsOneLiner(true);
       }
-      Logger.warnLog("Joke returned: ", r.data);
+      let message = "Joke returned: " + r.data.toString();
+      Logger.warnLog(message);
       setDisplayingJoke(true);
     } catch (err) {
       Logger.errorLog(err);
@@ -117,7 +119,8 @@ function JokeComponent({ backendOn, alertMethod }) {
                 <ListItemButton
                   key={i}
                   onClick={() => {
-                    Logger.warnLog("Option Clicked: " + c);
+                    let message = "Joke Category Clicked: " + c.toString();
+                    Logger.warnLog(message);
                     getJokeByCategory(c);
                     setShowCategories(false);
                   }}

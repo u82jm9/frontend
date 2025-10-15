@@ -43,7 +43,8 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
     Logger.infoLog("Updating Design Bike!");
     try {
       let b = await axios.post(BIKE_BUILDER_API_URL + "UpdateBike", methodBike);
-      Logger.warnLog("Update bike: ", b.data);
+      let message = "Update bike: " + b.data.toString();
+      Logger.warnLog(message);
       changeBike(b.data);
       setUpdateBikeList(true);
     } catch (err) {
@@ -62,7 +63,8 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
         BIKE_OPTIONS_API_URL + "GetOptions",
         combinedData
       );
-      Logger.warnLog("Updated Options: ", b.data);
+      let message = "Updated Options: " + b.data.toString();
+      Logger.warnLog(message);
       setOptions(b.data);
     } catch (err) {
       Logger.errorLog(err);
@@ -73,7 +75,8 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
     Logger.infoLog("Getting all Bikes on DB");
     try {
       let b = await axios.get(BIKE_BUILDER_API_URL + "GetAll");
-      Logger.warnLog("Got ", b.data.length, " built Bikes");
+      let message = "Got " + b.data.length.toString() + " built Bikes";
+      Logger.warnLog(message);
       setDatabaseBikes(b.data);
     } catch (err) {
       Logger.errorLog(err);
@@ -98,7 +101,8 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
     try {
       let b = await axios.get(BIKE_OPTIONS_API_URL + "StartNewBike");
       setOptions(b.data);
-      Logger.warnLog("Options for new Bike: ", b.data);
+      let message = "Options for new Bike: " + b.data.toString();
+      Logger.warnLog(message);
     } catch (err) {
       Logger.errorLog(err);
     }
@@ -109,7 +113,8 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
     try {
       let b = await axios.get(BIKE_BUILDER_API_URL + "StartNewBike");
       changeBike(b.data);
-      Logger.warnLog("Starting new Bike: ", b.data);
+      let message = "New Bike started: " + b.data.toString();
+      Logger.warnLog(message);
     } catch (err) {
       Logger.errorLog(err);
     }
@@ -129,7 +134,8 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
         BIKE_BUILDER_API_URL + "GetAllParts",
         bikeOnDisplay
       );
-      Logger.warnLog("Parts returned: ", b.data);
+      let message = "Parts returned: " + b.data.toString();
+      Logger.warnLog(message);
       setParts(b.data);
       alertMethod("success", "Retrieved parts list for Bike!!");
     } catch (err) {

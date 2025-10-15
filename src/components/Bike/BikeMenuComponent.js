@@ -19,7 +19,8 @@ const BikeMenuComponent = ({
     try {
       const { id, value } = e.target;
       const tempBike = await { ...bike, [id]: value };
-      Logger.warnLog("Bike Name change method! Bike: ", tempBike);
+      let message = "Bike Name change method! Bike: " + tempBike.toString();
+      Logger.warnLog(message);
       axios.post(BIKE_BUILDER_API_URL + "DeleteBike", bike);
       updateBikeAndOptions(tempBike, options);
       setTimeout(() => {

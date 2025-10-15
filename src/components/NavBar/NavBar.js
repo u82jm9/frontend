@@ -45,6 +45,14 @@ function NavBar({ backendOn, darkMode }) {
                   Notes
                 </Button>
               </Link>
+              <Link to="/Recipes">
+                <Button
+                  id="recipes"
+                  style={{ color: "black", fontWeight: "1000" }}
+                >
+                  Recipes
+                </Button>
+              </Link>
               <Link to="/Bikes">
                 <Button
                   id="bikes"
