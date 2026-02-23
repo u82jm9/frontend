@@ -8,20 +8,21 @@ This README focuses on what the project does and where to find key functionality
 
 ## High-level overview
 
-The app is a single-page React application composed of many small components and pages. Each area demonstrates simple UI, state handling, and file-based assets (images/gifs). The goal is an approachable collection of useful and fun micro-apps you can explore, reuse, or extend.
+The app is a single-page React application composed of many small components and pages. Each area demonstrates simple UI, state handling, and file-based assets (images/gifs). The goal is an approachable collection of useful and fun micro-apps you can explore, reuse, or extend. Some of the pages are built to run without the Back-End, meaning that the App stays live, with limited functionality, if the Back-End fails somehow.
 
 Main features:
 
-- Bike Builder: construct a bike from parts, preview images for parts and wheels, and inspect a parts table.
-- Games: small browser games including TicTacToe and a Word Search.
+- Bike Builder: construct a bike from parts, preview images for parts and wheels, and inspect a parts table. 
+- Games: small browser games including TicTacToe and a Word Search. 
 - Quotes: view film quotes and lists of quotes (sample data in `quotes.json`).
 - Weather: a weather display that uses GIFs and images to reflect conditions.
-- Sticky Notes: create, edit, and display sticky notes with a small form and card UI.
 - Jokes: display jokes and a simple joke component.
 - Google Helpers: small wrappers for searching and calendar helpers (UI-only in this repo).
-- Bank Holidays & Recipes: simple components showing lists and details.
+- Recipes: simple display component for web based Recipes.
 
 The site also includes a navigation bar and page layout components to route between the above features.
+A dark mode built in that changes the colour scheme across all the pages.
+A constant check on the Back-End to ensure that it is up and running. If the Back-End is not present then the relevant Pages are removed.
 
 ---
 
@@ -49,9 +50,6 @@ Assets:
 Styles:
 - `src/css/` — app-wide and feature-specific CSS files (e.g. `App.css`, `Bike.css`).
 
-Tests:
-- `src/test/App.test.jsx` — example test(s).
-
 ---
 
 ## Running the app (developer quick-start)
@@ -74,15 +72,17 @@ Notes: this project was created with Create React App, so standard CRA scripts w
 
 ## Usage highlights / Where to look for functionality
 
-- Bike Builder: open the Bike page from the NavBar. There you can choose parts, see a parts table, and view assembled-bike images driven by your selections. Images live in `src/images` and missing parts fall back to a `no_image.png` placeholder.
+- Bike Builder: open the Bike page from the NavBar. There you can choose parts, see a parts table, and view assembled-bike images driven by your selections. Images live in `src/images` and missing parts fall back to a `no_image.png` placeholder. All parts are retrieved using web scrapers in the back end, pricing reflects real world prices, or shows the date the price was last updated.
 
-- Games: open the Games page. `TicTacToe.js` contains a compact, interactive tic-tac-toe implementation; `WordSearch.js` demonstrates a simple word search UI.
+- Games: open the Games page. `TicTacToe.js` contains a compact, interactive tic-tac-toe implementation; `WordSearch.js` demonstrates a simple word search UI. Additional word Searches can be built by the user.
 
 - Quotes: the Quote page reads sample quotes from `src/components/Quote/quotes.json` and presents them via `QuoteDisplayer.js` and `FilmQuoteComponent.js`.
 
-- Weather: the Weather component maps condition names to GIFs in `src/gifs` and displays a visual summary. This is UI-only and can be wired to a real weather API if desired.
+- Weather: the Weather component maps condition names to GIFs in `src/gifs` and displays a visual summary. This is UI-only and is tranlated from an external free-to-use weather API.
 
-- Sticky Notes: create and save sticky notes client-side (in-memory) via `StickyNoteForm.js` and view them as cards.
+- Sticky Notes: create, edit, and display sticky notes with a small form and card UI.
+
+- Recipe: Enter a Recipe URL and the Back-End will strip out the excess information from the webpage; leaving only the ingredients and method steps required.
 
 - Google utilities: UI for search and calendar helpers — these are currently client-side helpers and not integrated with Google APIs in this repo.
 
@@ -96,28 +96,25 @@ Notes: this project was created with Create React App, so standard CRA scripts w
 
 - Images & assets: bike images are named with numeric prefixes and part names (e.g., `1_chain.png`, `9_STI.png`). The components expect those naming conventions; adding new parts requires adding images and updating the mapping logic in `BikeBuilderComponent.js` or `DisplayBikeImages.js`.
 
-- Tests: there is one example test. Add more tests for components you change.
-
 ---
 
-## Contributing
+## Tests
 
-Contributions are welcome. Small improvements that add examples, polish UI, or wire components to real APIs are especially useful. When contributing:
-
-- Keep commits small and focused.
-- Run `npm test` and verify the app builds locally.
-- Update this README with any new major feature or structure change.
+Currently the testing is all completed in the Back-End app.
 
 ---
 
 ## License
 
-This repository has no explicit license file. If you plan to share or reuse the code publicly, consider adding an appropriate LICENSE file.
+This project does not currently include a license file. Add a `LICENSE` or let me know which license to use and I can add it.
+It is completely self built and not licenses were purchased as part of the development.
 
 ---
 
-If you'd like, I can also:
-- Add short screenshots or GIFs for each major feature, or
-- Generate a smaller developer-focused README with examples of how to extend the Bike builder or wire the Weather component to a real API.
+## Future Improvements
 
-Tell me which of those you'd like next.
+- Add testing to cover non-Backe-End functionality.
+- Add API testing to check data shapes and response handling.
+- Further investigate Google Calendar functionality, using their externally exposed API's
+- Refactor code to increase readability, stability and efficiency.
+- Add images and gifs as demos to this readme file.
