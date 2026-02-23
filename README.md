@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Nonsense (frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React demo app with a collection of independent UI widgets and mini-apps. This repository contains the frontend only and is structured as a playground for interactive components such as a bike builder, simple games, quote viewers, a sticky-note tool, weather display, and a few Google and utility helpers.
 
-## Available Scripts
+This README focuses on what the project does and where to find key functionality — not the Create React App boilerplate.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## High-level overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The app is a single-page React application composed of many small components and pages. Each area demonstrates simple UI, state handling, and file-based assets (images/gifs). The goal is an approachable collection of useful and fun micro-apps you can explore, reuse, or extend.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Main features:
 
-### `npm test`
+- Bike Builder: construct a bike from parts, preview images for parts and wheels, and inspect a parts table.
+- Games: small browser games including TicTacToe and a Word Search.
+- Quotes: view film quotes and lists of quotes (sample data in `quotes.json`).
+- Weather: a weather display that uses GIFs and images to reflect conditions.
+- Sticky Notes: create, edit, and display sticky notes with a small form and card UI.
+- Jokes: display jokes and a simple joke component.
+- Google Helpers: small wrappers for searching and calendar helpers (UI-only in this repo).
+- Bank Holidays & Recipes: simple components showing lists and details.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The site also includes a navigation bar and page layout components to route between the above features.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Where to find things (important files & folders)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `src/index.js` — app entry.
+- `src/Page/App.js` — top-level app component / routes.
+- `src/Page/HomePage.js` — central hub / landing page for the collection.
+- `src/components/NavBar/NavBar.js` — global navigation.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Feature-specific folders inside `src/components/`:
+- `Bike/` — `BikeBuilderComponent.js`, `BikeMenuComponent.js`, `BikePartsTable.js`, `DisplayBikeImages.js` (bike builder UI and assets in `src/images`).
+- `Games/` — `GamesComponent.js`, `TicTacToe.js`, `WordSearch.js`.
+- `Quote/` — `DisplayListsOfQuotes.js`, `FilmQuoteComponent.js`, `QuoteDisplayer.js`, `quotes.json`.
+- `Weather/` — weather display components and `src/gifs/` for condition animations.
+- `StickyNote/` — `StickyNoteComponent.js`, `StickyNoteForm.js`, `StickyNoteCard.js`.
+- `Joke/` — `JokeComponent.js`, `DisplayJoke.js`.
+- `Google/` — `GoogleSearch.js`, `GoogleCalendar.js` (UI helpers).
+- `BankHoliday/`, `Recipe/` — small demo components showing lists/details.
 
-### `npm run eject`
+Assets:
+- `src/images/` — bike parts and generic UI images.
+- `src/gifs/` — weather-related animated GIFs.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Styles:
+- `src/css/` — app-wide and feature-specific CSS files (e.g. `App.css`, `Bike.css`).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tests:
+- `src/test/App.test.jsx` — example test(s).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Running the app (developer quick-start)
 
-## Learn More
+1. Install dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Start the development server:
 
-### Code Splitting
+   npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. Run tests:
 
-### Analyzing the Bundle Size
+   npm test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Notes: this project was created with Create React App, so standard CRA scripts work as expected.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Usage highlights / Where to look for functionality
 
-### Advanced Configuration
+- Bike Builder: open the Bike page from the NavBar. There you can choose parts, see a parts table, and view assembled-bike images driven by your selections. Images live in `src/images` and missing parts fall back to a `no_image.png` placeholder.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Games: open the Games page. `TicTacToe.js` contains a compact, interactive tic-tac-toe implementation; `WordSearch.js` demonstrates a simple word search UI.
 
-### Deployment
+- Quotes: the Quote page reads sample quotes from `src/components/Quote/quotes.json` and presents them via `QuoteDisplayer.js` and `FilmQuoteComponent.js`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Weather: the Weather component maps condition names to GIFs in `src/gifs` and displays a visual summary. This is UI-only and can be wired to a real weather API if desired.
 
-### `npm run build` fails to minify
+- Sticky Notes: create and save sticky notes client-side (in-memory) via `StickyNoteForm.js` and view them as cards.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Google utilities: UI for search and calendar helpers — these are currently client-side helpers and not integrated with Google APIs in this repo.
+
+---
+
+## Development notes and extension points
+
+- Routing / Page Layout: `src/Page/PageLayout.js` and `src/Page/App.js` orchestrate the main layout and route-to-component mapping. Adding a new page is typically adding a new component and a route.
+
+- State: many components use local state (React useState). If you plan to add cross-cutting state, consider adding a lightweight store (Context or Redux).
+
+- Images & assets: bike images are named with numeric prefixes and part names (e.g., `1_chain.png`, `9_STI.png`). The components expect those naming conventions; adding new parts requires adding images and updating the mapping logic in `BikeBuilderComponent.js` or `DisplayBikeImages.js`.
+
+- Tests: there is one example test. Add more tests for components you change.
+
+---
+
+## Contributing
+
+Contributions are welcome. Small improvements that add examples, polish UI, or wire components to real APIs are especially useful. When contributing:
+
+- Keep commits small and focused.
+- Run `npm test` and verify the app builds locally.
+- Update this README with any new major feature or structure change.
+
+---
+
+## License
+
+This repository has no explicit license file. If you plan to share or reuse the code publicly, consider adding an appropriate LICENSE file.
+
+---
+
+If you'd like, I can also:
+- Add short screenshots or GIFs for each major feature, or
+- Generate a smaller developer-focused README with examples of how to extend the Bike builder or wire the Weather component to a real API.
+
+Tell me which of those you'd like next.
