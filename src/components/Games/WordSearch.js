@@ -32,7 +32,7 @@ function WordSearch({ displayAlert }) {
     "Y",
     "Z",
   ];
-  const numberOfLines = 12;
+  const numberOfLines = 14;
   const cityCapitols = [
     ["E", "D", "I", "N", "B", "U", "R", "G", "H"],
     ["B", "R", "A", "T", "I", "S", "L", "A", "V", "A"],
@@ -91,6 +91,8 @@ function WordSearch({ displayAlert }) {
   const [foundIndexes, setFoundIndexes] = useState([]);
   const [wordsToFind, setWordsToFind] = useState(cityCapitols);
   const [wordsAdded, setWordsAdded] = useState([]);
+  const [totalWordsInPuzzle, setTotalWordsInPuzzle] = useState(null);
+  const [numberOfWordsFound, setNumberOfWordsFound] = useState(0);
   const [puzzle, setPuzzle] = useState([]);
   const [selection, setSelection] = useState([]);
   const [lockedTiles, setLockedTiles] = useState([]);
@@ -100,7 +102,9 @@ function WordSearch({ displayAlert }) {
   }, [wordsToFind]);
 
   useEffect(() => {
-    checkWordFound();
+    if (selection.length > 0) {
+      checkWordFound();
+    }
   }, [selection]);
 
   function fillPuzzle() {
@@ -110,6 +114,7 @@ function WordSearch({ displayAlert }) {
     addWords(tempPuzzle);
     addRestOfLetters(tempPuzzle);
     setPuzzle(tempPuzzle);
+    setTotalWordsInPuzzle(wordsToFind.length);
   }
 
   function changePuzzle(choice) {
@@ -129,42 +134,118 @@ function WordSearch({ displayAlert }) {
 
   function addWords(passedPuzzle) {
     let successfulWords = [];
+
     for (let i = 0; i < wordsToFind.length; i++) {
       let attempts = 0;
       let word = wordsToFind[i];
       let added = false;
+      let direction = i % 4;
 
-      while (attempts < 6 && !added) {
-        let startLine = Math.floor(Math.random() * numberOfLines);
-        let startColumn = Math.floor(Math.random() * numberOfLines);
-        let line = passedPuzzle[startLine];
+      while (attempts < 10 && !added) {
+        let startRow = Math.floor(Math.random() * numberOfLines);
+        let startCol = Math.floor(Math.random() * numberOfLines);
 
-        // Check if the word fits in the specified direction (right or left)
-        if (word.length <= spaceToEndOfLine(startColumn)) {
-          let canPlace = true;
-          for (let j = 0; j < word.length; j++) {
-            if (line[startColumn + j] !== "") {
-              canPlace = false;
-              break;
+        if (direction === 0) {
+          // RIGHT →
+          if (startCol + word.length <= numberOfLines) {
+            let canPlace = true;
+
+            for (let j = 0; j < word.length; j++) {
+              if (
+                passedPuzzle[startRow][startCol + j] !== "" &&
+                passedPuzzle[startRow][startCol + j] !== word[j]
+              ) {
+                canPlace = false;
+                break;
+              }
+            }
+
+            if (canPlace) {
+              for (let j = 0; j < word.length; j++) {
+                passedPuzzle[startRow][startCol + j] = word[j];
+              }
+              successfulWords.push(word.join(""));
+              added = true;
             }
           }
 
-          if (canPlace) {
+        } else if (direction === 1) {
+          // DOWN ↓
+          if (startRow + word.length <= numberOfLines) {
+            let canPlace = true;
+
             for (let j = 0; j < word.length; j++) {
-              line[startColumn + j] = word[j];
+              if (
+                passedPuzzle[startRow + j][startCol] !== "" &&
+                passedPuzzle[startRow + j][startCol] !== word[j]
+              ) {
+                canPlace = false;
+                break;
+              }
             }
-            successfulWords.push(word.join(""));
-            added = true;
+
+            if (canPlace) {
+              for (let j = 0; j < word.length; j++) {
+                passedPuzzle[startRow + j][startCol] = word[j];
+              }
+              successfulWords.push(word.join(""));
+              added = true;
+            }
+          }
+
+        } else if (direction === 2) {
+          // UP ↑
+          if (startRow - (word.length - 1) >= 0) {
+            let canPlace = true;
+
+            for (let j = 0; j < word.length; j++) {
+              if (
+                passedPuzzle[startRow - j][startCol] !== "" &&
+                passedPuzzle[startRow - j][startCol] !== word[j]
+              ) {
+                canPlace = false;
+                break;
+              }
+            }
+
+            if (canPlace) {
+              for (let j = 0; j < word.length; j++) {
+                passedPuzzle[startRow - j][startCol] = word[j];
+              }
+              successfulWords.push(word.join(""));
+              added = true;
+            }
+          }
+
+        } else if (direction === 3) {
+          // LEFT ←
+          if (startCol - (word.length - 1) >= 0) {
+            let canPlace = true;
+
+            for (let j = 0; j < word.length; j++) {
+              if (
+                passedPuzzle[startRow][startCol - j] !== "" &&
+                passedPuzzle[startRow][startCol - j] !== word[j]
+              ) {
+                canPlace = false;
+                break;
+              }
+            }
+
+            if (canPlace) {
+              for (let j = 0; j < word.length; j++) {
+                passedPuzzle[startRow][startCol - j] = word[j];
+              }
+              successfulWords.push(word.join(""));
+              added = true;
+            }
           }
         }
         attempts++;
       }
     }
-    setWordsAdded(successfulWords);
-  }
 
-  function spaceToEndOfLine(startColumn) {
-    return numberOfLines - startColumn;
+    setWordsAdded(successfulWords);
   }
 
   function addRestOfLetters(passedPuzzle) {
@@ -198,20 +279,34 @@ function WordSearch({ displayAlert }) {
       tempSelection.push(location);
       setSelection(tempSelection); // Update the selection state
     } else {
-      displayAlert("error", "Invalid selection! Only adjacent tiles can be selected.")
+      displayAlert(
+        "error",
+        "Invalid selection! Only adjacent tiles can be selected.",
+      );
     }
   }
 
   function checkWordFound() {
     let characters = selection.map(([r, c]) => puzzle[r][c]).join("");
-    let tempIndexes = [...foundIndexes];
     const index = wordsAdded.findIndex((word) => word === characters);
     if (index !== -1) {
       displayAlert("success", "You found a word!!");
-      restartTimer(1500);
+      restartTimer(500);
       setLockedTiles((prev) => [...prev, ...selection]);
-      tempIndexes.push(index);
-      setFoundIndexes(tempIndexes);
+      setFoundIndexes((prev) => [...prev, index]);
+      setNumberOfWordsFound((prev) => {
+        const newCount = prev + 1;
+
+        if (newCount === totalWordsInPuzzle) {
+          displayAlert("success", "You have completed the puzzle!!");
+          setLockedTiles([]);
+          setFoundIndexes([]);
+          setSelection([]);
+          fillPuzzle();
+          return 0;
+        }
+        return newCount;
+      });
     }
   }
 
@@ -289,6 +384,9 @@ function WordSearch({ displayAlert }) {
       <div>
         <h2>{selection.map(([r, c]) => puzzle[r][c]).join("")}</h2>
         <h2>Words to Find:</h2>
+        <h3>
+          Found {numberOfWordsFound} / {totalWordsInPuzzle}
+        </h3>
         {wordsAdded.map((w, i) => (
           <p
             key={i}
