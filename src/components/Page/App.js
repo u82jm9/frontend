@@ -36,11 +36,12 @@ function App() {
     try {
       let r = await axios.get(BACK_END_API + "IsThisThingOn");
       setBackendOn(r.data);
-      const status = String(r.data);
+      const status = String(backendOn);
       console.log("Back-End ON!!! = " + status);
     } catch (err) {
       setBackendOn(false);
-      console.log("Back-End not on!");
+      const status = String(backendOn);
+      console.log("Back-End not on!! = " + status);
     } finally {
       checkPage();
     }

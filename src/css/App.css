@@ -383,6 +383,11 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   background-color: darkgoldenrod;
 }
 
+.tile-locked {
+  background-color: darkgoldenrod;
+  text-decoration-line: line-through;
+}
+
 /* .top-sticker */
 .top-sticker {
   background-color: rgb(238, 207, 85);

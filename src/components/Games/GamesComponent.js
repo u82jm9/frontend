@@ -5,7 +5,7 @@ function GamesComponent({ alertMethod }) {
   return (
     <>
       <h1>Games games games !!!!</h1>
-      <TicTacToe />
+      <TicTacToe displayAlert={alertMethod} />
       <WordSearch displayAlert={alertMethod} />
     </>
   );

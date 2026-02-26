@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { Collapse, List, ListItemButton, ListItemText } from "@mui/material";
 
 function WordSearch({ displayAlert }) {
+  const clearTimerRef = useRef(null);
   const alphabet = [
     "A",
     "B",
@@ -92,6 +93,7 @@ function WordSearch({ displayAlert }) {
   const [wordsAdded, setWordsAdded] = useState([]);
   const [puzzle, setPuzzle] = useState([]);
   const [selection, setSelection] = useState([]);
+  const [lockedTiles, setLockedTiles] = useState([]);
 
   useEffect(() => {
     fillPuzzle();
@@ -103,7 +105,7 @@ function WordSearch({ displayAlert }) {
 
   function fillPuzzle() {
     const tempPuzzle = Array.from({ length: numberOfLines }, () =>
-      Array(numberOfLines).fill("")
+      Array(numberOfLines).fill(""),
     );
     addWords(tempPuzzle);
     addRestOfLetters(tempPuzzle);
@@ -111,6 +113,9 @@ function WordSearch({ displayAlert }) {
   }
 
   function changePuzzle(choice) {
+    setLockedTiles([]);
+    setFoundIndexes([]);
+    setSelection([]);
     if (choice === "Cities") {
       setWordsToFind(cityCapitols);
     } else if (choice === "Olympic Sports") {
@@ -193,27 +198,30 @@ function WordSearch({ displayAlert }) {
       tempSelection.push(location);
       setSelection(tempSelection); // Update the selection state
     } else {
-      console.log("Invalid selection! Only adjacent tiles can be selected.");
+      displayAlert("error", "Invalid selection! Only adjacent tiles can be selected.")
     }
-    setTimeout(() => {
-      setSelection([]);
-    }, 5000);
   }
 
   function checkWordFound() {
     let characters = selection.map(([r, c]) => puzzle[r][c]).join("");
     let tempIndexes = [...foundIndexes];
-    console.log("Characters: ", characters);
     const index = wordsAdded.findIndex((word) => word === characters);
     if (index !== -1) {
-      console.log("Word found at index:", index, "Word:", wordsAdded[index]);
       displayAlert("success", "You found a word!!");
+      restartTimer(1500);
+      setLockedTiles((prev) => [...prev, ...selection]);
       tempIndexes.push(index);
       setFoundIndexes(tempIndexes);
-      setTimeout(() => {
-        setSelection([]);
-      }, 1500);
     }
+  }
+
+  function restartTimer(time) {
+    if (clearTimerRef.current) {
+      clearTimeout(clearTimerRef.current);
+    }
+    clearTimerRef.current = setTimeout(() => {
+      setSelection([]);
+    }, time);
   }
 
   return (
@@ -252,15 +260,24 @@ function WordSearch({ displayAlert }) {
             {line.map((tile, columnIndex) => {
               const isSelected = selection.some(
                 ([selRow, selCol]) =>
-                  selRow === lineIndex && selCol === columnIndex
+                  selRow === lineIndex && selCol === columnIndex,
               );
+              const isLocked = lockedTiles.some(
+                ([lockRow, lockCol]) =>
+                  lockRow === lineIndex && lockCol === columnIndex,
+              );
+
               return (
                 <div
                   key={columnIndex}
                   onClick={() => {
+                    restartTimer(3500);
                     tileClick(lineIndex, columnIndex);
                   }}
-                  className={`wordsearch-box ${isSelected && "tile-selected"}`}
+                  className={`wordsearch-box
+                  ${isSelected && "tile-selected"}
+                  ${isLocked ? "tile-locked" : ""}
+                  `}
                 >
                   {tile}
                 </div>
@@ -272,7 +289,6 @@ function WordSearch({ displayAlert }) {
       <div>
         <h2>{selection.map(([r, c]) => puzzle[r][c]).join("")}</h2>
         <h2>Words to Find:</h2>
-
         {wordsAdded.map((w, i) => (
           <p
             key={i}

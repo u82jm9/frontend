@@ -59,11 +59,11 @@ function WeatherBaseComponent({ alertMethod }) {
       let w = await axios.request(options);
       setCity(w.data.location.name);
       changeDaysText(w.data.forecast.forecastday);
-      alertMethod("success", "Got the Weather Forecast!!");
+      alertMethod("success", "Got the Weather Forecast for " + city);
     } catch (err) {
       alertMethod(
         "error",
-        "Sorry, something happened, could not retrieve Weather Forecast :("
+        "Sorry, something happened, could not retrieve Weather Forecast :(",
       );
       Logger.errorLog("Failed to get Forecast");
       Logger.errorLog(err);

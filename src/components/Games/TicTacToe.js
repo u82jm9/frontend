@@ -2,11 +2,12 @@ import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import { GiBroadsword, GiCheckedShield } from "react-icons/gi";
 
-function TicTacToe() {
+function TicTacToe({ displayAlert }) {
   const [player1Score, setPlayer1Score] = useState(0);
   const [player2Score, setPlayer2Score] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [isPlayer1, setIsPlayer1] = useState(true);
+  const [winner, setWinner] = useState(null);
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
   const WINNING_COMBINATIONS = [
     [0, 1, 2],
@@ -25,9 +26,12 @@ function TicTacToe() {
 
   useEffect(() => {
     if (gameOver) {
+      const winnerString = "The Winner is Player " + String(winner);
+      displayAlert("success", winnerString);
       setTimeout(() => {
         resetBoard();
-      }, 2500);
+      }, 2000);
+      setWinner(null);
     }
   }, [gameOver]);
 
@@ -63,11 +67,13 @@ function TicTacToe() {
         if (winningOption.every((index) => player1Moves.includes(index))) {
           setGameOver(true);
           setPlayer1Score(player1Score + 1);
+          setWinner(1);
         } else if (
           winningOption.every((index) => player2Moves.includes(index))
         ) {
           setGameOver(true);
           setPlayer2Score(player2Score + 1);
+          setWinner(2);
         }
       }
     }
@@ -76,8 +82,6 @@ function TicTacToe() {
   return (
     <div className="display-game">
       <h1>Tic Tac Toe</h1>
-
-      {gameOver && <h2>The Winner is Player {isPlayer1 ? <>2</> : <>1</>}</h2>}
       <div className="game-board">
         <div className="board-line">
           <div
