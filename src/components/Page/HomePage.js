@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import BankHolidayComponent from "../BankHoliday/BankHolidayComponent";
 import WeatherBaseComponet from "../Weather/WeatherBaseComponent";
 import dragonBallGif from "../../gifs/dragon_ball_form.gif";
+import FuelPriceComponent from "../FuelPrice/FuelPriceComponent";
 
 function HomePage({ alertMethod }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +25,7 @@ function HomePage({ alertMethod }) {
       <BankHolidayComponent />
       <div className={isLoading ? "loading" : "loadingComplete"}>
         <WeatherBaseComponet alertMethod={alertMethod} />
+        <FuelPriceComponent />
       </div>
     </>
   );

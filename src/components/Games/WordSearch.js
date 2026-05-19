@@ -32,7 +32,7 @@ function WordSearch({ displayAlert }) {
     "Y",
     "Z",
   ];
-  const numberOfLines = 14;
+  const numberOfLines = 20;
   const cityCapitols = [
     ["E", "D", "I", "N", "B", "U", "R", "G", "H"],
     ["B", "R", "A", "T", "I", "S", "L", "A", "V", "A"],
@@ -74,7 +74,7 @@ function WordSearch({ displayAlert }) {
     ["T", "E", "L", "E", "P", "H", "O", "N", "E"],
     ["C", "O", "M", "P", "U", "T", "E", "R"],
     ["L", "I", "G", "H", "T", "B", "U", "L", "B"],
-    ["A", "I", "R", "P", "L", "A", "N", "E"],
+    ["A", "E", "R", "O", "P", "L", "A", "N", "E"],
     ["R", "A", "D", "I", "O"],
     ["I", "N", "T", "E", "R", "N", "E", "T"],
     ["B", "I", "C", "Y", "C", "L", "E"],
@@ -168,7 +168,6 @@ function WordSearch({ displayAlert }) {
               added = true;
             }
           }
-
         } else if (direction === 1) {
           // DOWN ↓
           if (startRow + word.length <= numberOfLines) {
@@ -192,7 +191,6 @@ function WordSearch({ displayAlert }) {
               added = true;
             }
           }
-
         } else if (direction === 2) {
           // UP ↑
           if (startRow - (word.length - 1) >= 0) {
@@ -216,7 +214,6 @@ function WordSearch({ displayAlert }) {
               added = true;
             }
           }
-
         } else if (direction === 3) {
           // LEFT ←
           if (startCol - (word.length - 1) >= 0) {
