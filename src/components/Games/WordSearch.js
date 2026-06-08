@@ -32,7 +32,7 @@ function WordSearch({ displayAlert }) {
     "Y",
     "Z",
   ];
-  const numberOfLines = 20;
+  const numberOfLines = 21;
   const cityCapitols = [
     ["E", "D", "I", "N", "B", "U", "R", "G", "H"],
     ["B", "R", "A", "T", "I", "S", "L", "A", "V", "A"],

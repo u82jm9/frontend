@@ -14,6 +14,7 @@ import StickyNoteComponent from "../StickyNote/StickyNoteComponent";
 import BikeBuilderComponent from "../Bike/BikeBuilderComponent";
 import Logger from "../Logger";
 import GoogleCalendar from "../Google/GoogleCalendar";
+import AdventureComponent from "../Adventures/AdventureComponent";
 
 const BACK_END_API = "http://localhost:8088/demo/Test/";
 const pagesRequireBackend = ["/Notes", "/Bikes"];
@@ -75,7 +76,21 @@ function App() {
               {showAlert && (
                 <Alert severity={alertSeverity}>{alertMessage}</Alert>
               )}
-              <HomePage alertMethod={displayAlertMessage} />
+              <HomePage
+                backendOn={backendOn}
+                alertMethod={displayAlertMessage}
+              />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/Adventure"
+          element={
+            <PageLayout backendOn={backendOn}>
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <AdventureComponent alertMethod={{ displayAlertMessage }} />
             </PageLayout>
           }
         />
@@ -108,10 +123,7 @@ function App() {
               {showAlert && (
                 <Alert severity={alertSeverity}>{alertMessage}</Alert>
               )}
-              <JokeComponent
-                alertMethod={displayAlertMessage}
-                backendOn={backendOn}
-              />
+              <JokeComponent alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />

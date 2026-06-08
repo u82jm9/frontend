@@ -4,7 +4,7 @@ import WeatherBaseComponet from "../Weather/WeatherBaseComponent";
 import dragonBallGif from "../../gifs/dragon_ball_form.gif";
 import FuelPriceComponent from "../FuelPrice/FuelPriceComponent";
 
-function HomePage({ alertMethod }) {
+function HomePage({ backEndOn, alertMethod }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function HomePage({ alertMethod }) {
       <BankHolidayComponent />
       <div className={isLoading ? "loading" : "loadingComplete"}>
         <WeatherBaseComponet alertMethod={alertMethod} />
-        <FuelPriceComponent />
+        {backEndOn ? <FuelPriceComponent /> : <></>}
       </div>
     </>
   );

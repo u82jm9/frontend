@@ -20,8 +20,19 @@ function NavBar({ backendOn, darkMode }) {
               Home
             </Button>
           </Link>
+          <Link to="/Adventure">
+            <Button
+              id="adventure"
+              style={{ color: "black", fontWeight: "1000" }}
+            >
+              Adventure
+            </Button>
+          </Link>
           <Link to="/Calendar">
-            <Button id="calendar" style={{ color: "black", fontWeight: "1000" }}>
+            <Button
+              id="calendar"
+              style={{ color: "black", fontWeight: "1000" }}
+            >
               Calendar
             </Button>
           </Link>
