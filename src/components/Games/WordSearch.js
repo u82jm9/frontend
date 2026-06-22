@@ -98,6 +98,12 @@ function WordSearch({ displayAlert }) {
   const [lockedTiles, setLockedTiles] = useState([]);
 
   useEffect(() => {
+    setTimeout(() => {
+      setShowPuzzles(false);
+    }, 5000);
+  }, [showPuzzles]);
+
+  useEffect(() => {
     fillPuzzle();
   }, [wordsToFind]);
 
@@ -329,7 +335,7 @@ function WordSearch({ displayAlert }) {
           <ListItemText primary="Select Puzzle Category" />
           {showPuzzles ? <FaAngleUp /> : <FaAngleDown />}
         </ListItemButton>
-        <Collapse in={showPuzzles} timeout="auto" unmountOnExit>
+        <Collapse in={showPuzzles} timeout="3000" unmountOnExit>
           <List component="div" disablePadding>
             {availablePuzzles.map((c, i) => (
               <ListItemButton

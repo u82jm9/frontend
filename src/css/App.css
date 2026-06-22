@@ -1,13 +1,23 @@
-/* Base styles */
-/*
-padding: 25px 50px 75px 100px;
-top padding is 25px
-right padding is 50px
-bottom padding is 75px
-left padding is 100px 
-margin: 25px 50px - 25px to top and bottom, 50px to left and right 
-padding: 30px 60px - 30px to top and bottom, 60px to left and right 
-*/
+.adventure-display {
+  height: fit-content;
+  width: fit-content;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px black solid;
+}
+
+.adventure-image img {
+  max-height: 1000px;
+  max-width: 1000px;
+  margin: 5px;
+}
+
+.adventure-tile {
+  border: 0.5px dotted;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
 
 /* .App */
 .App {
@@ -158,6 +168,29 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   margin-bottom: 10px;
 }
 
+.drag-enter {
+  background-color: rgb(113, 191, 211);
+}
+
+.file-display-box {
+  display: inline-flex;
+}
+
+.file-display-box img {
+  max-height: 100px;
+  max-width: 100px;
+  margin: 5px;
+}
+
+.file-drag-box {
+  border-radius: 5px;
+  border-color: black;
+  background-color: burlywood;
+  margin: 0 auto;
+  width: 350px;
+  height: 350px;
+}
+
 /* .filter-sort */
 .filter-sort {
   min-width: 250px;
@@ -186,55 +219,25 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: fit-content;
 }
 
-.file-drag-box {
-  border-radius: 5px;
-  border-color: black;
-  background-color: burlywood;
-  margin: 0 auto;
-  width: 350px;
-  height: 350px;
-}
-
-.file-display-box {
-  display: inline-flex;
-}
-
-.file-display-box img {
-  max-height: 100px;
-  max-width: 100px;
-  margin: 5px;
-}
-
-.drag-enter {
-  background-color: rgb(113, 191, 211);
-}
-
-.adventure-image img {
-  max-height: 1000px;
-  max-width: 1000px;
-  margin: 5px;
-}
-
-.adventure-display {
-  height: fit-content;
-  width: fit-content;
-  margin: 5px;
-  border-radius: 5px;
-  border: 1px black solid;
-}
-
 .google-calendar {
   margin: 15px;
   border: 1px solid black;
   border-radius: 10px;
 }
 
+.google-calendar-display {
+  margin: 5px;
+}
+
 .google-calendar-title {
   margin: 5px;
 }
 
-.google-calendar-display {
-  margin: 5px;
+.hover:hover {
+  cursor: pointer;
+  box-shadow:
+    2px 2px 3px inset,
+    2px 2px 3px;
 }
 
 /* .loading */
@@ -343,6 +346,15 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   padding: 20px;
 }
 
+.recipe-header {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+}
+
 .recipe-instructions li {
   width: fit-content;
   padding-bottom: 20px;
@@ -351,15 +363,6 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
 .recipe-instructions ul {
   width: fit-content;
   padding: 0px;
-}
-
-.recipe-header {
-  margin: 0 auto;
-  margin-bottom: 10px;
-  width: fit-content;
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 20px;
 }
 
 /* .scroll-button */
@@ -379,11 +382,6 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: min-content;
 }
 
-/* .switch-container */
-.switch-container {
-  align-items: center;
-}
-
 /* .switch h1 */
 .switch h1 {
   font-size: 2em;
@@ -395,6 +393,11 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   height: 90%;
   padding: 5% 0 0 10%;
   width: 90%;
+}
+
+/* .switch-container */
+.switch-container {
+  align-items: center;
 }
 
 /* .text-box */
@@ -418,13 +421,13 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   cursor: pointer;
 }
 
-.tile-selected {
-  background-color: darkgoldenrod;
-}
-
 .tile-locked {
   background-color: darkgoldenrod;
   text-decoration-line: line-through;
+}
+
+.tile-selected {
+  background-color: darkgoldenrod;
 }
 
 /* .top-sticker */
@@ -472,6 +475,10 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: 50px;
 }
 
+.word-strikethrough {
+  text-decoration-line: line-through;
+}
+
 /* .wordsearch-box */
 .wordsearch-box {
   border: 1px solid black;
@@ -479,11 +486,37 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: 30px;
 }
 
-.hover:hover {
+/* .wordsearch-box */
+.wordsearch-box:hover {
   background-color: darkgoldenrod;
   cursor: pointer;
 }
 
-.word-strikethrough {
-  text-decoration-line: line-through;
+/* Base styles */
+/*
+padding: 25px 50px 75px 100px;
+top padding is 25px
+right padding is 50px
+bottom padding is 75px
+left padding is 100px 
+margin: 25px 50px - 25px to top and bottom, 50px to left and right 
+padding: 30px 60px - 30px to top and bottom, 60px to left and right 
+*/
+
+/* .adventure-grid-board */
+.adventure-board {
+  --adventure-rows: 1;
+  --adventure-cols: 1;
+  --url_image: url("../images/rsr_2026_map.png");
+  background-image: var(--url_image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--adventure-cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--adventure-rows), minmax(0, 1fr));
+  margin: 0 auto;
+  position: relative;
+  width: min(90vw, 400px);
+  aspect-ratio: 2 / 3;
 }

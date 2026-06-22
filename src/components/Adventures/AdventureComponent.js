@@ -1,11 +1,24 @@
 import { useState, useEffect } from "react";
 import Logger from "../Logger";
 import axios from "axios";
-import { Button } from "@mui/material";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import {
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemText,
+  Button,
+} from "@mui/material";
 import OutsideClickHandler from "react-outside-click-handler";
+import rsr2024Map from "../../images/rsr_2024_map.png";
+import rsr2025Map from "../../images/rsr_2025_map.png";
+import rsr2026Map from "../../images/rsr_2026_map.png";
 
 const ADVENTURE_API_URL = "http://localhost:8088/demo/Test/";
 function AdventureComponent({ backendOn, alertMethod }) {
+  const [imageURL, setImageURL] = useState(rsr2026Map);
+  const [showRoutes, setShowRoutes] = useState(false);
+  const [routeDisplayed, setRouteDisplayed] = useState("RSR 2026");
   const [imageToDisplay, setImageToDisplay] = useState();
   const [showImageOnly, setShowImageOnly] = useState(false);
   const [displayFile, setDisplayFile] = useState([]);
@@ -15,9 +28,27 @@ function AdventureComponent({ backendOn, alertMethod }) {
   const [showDragBox, setShowDragBox] = useState(false);
   const [dragEnter, setDragEnter] = useState(false);
   const [grid, setGrid] = useState([]);
-  const numberOfLines = 9;
+  const numberOfRows = 12;
+  const numberOfColumns = 9;
   const getMapping = directory + tileId;
   const MAX_SIZE = 1 * 1024 * 1024; // 1MB
+  const possibleRoutes = ["RSR 2026", "RSR 2025", "RSR 2024"];
+  const routeToImage = {
+    "RSR 2026": rsr2026Map,
+    "RSR 2025": rsr2025Map,
+    "RSR 2024": rsr2024Map,
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowRoutes(false);
+    }, 5000);
+  }, [showRoutes]);
+
+  useEffect(() => {
+    const nextImage = routeToImage[routeDisplayed] || rsr2026Map;
+    setImageURL(nextImage);
+  }, [routeDisplayed]);
 
   useEffect(() => {
     Logger.infoLog("I'm on the Adventure Component Page!");
@@ -44,15 +75,15 @@ function AdventureComponent({ backendOn, alertMethod }) {
   }, [directoryFiles]);
 
   function createGrid() {
-    const tempGrid = Array.from({ length: numberOfLines }, () =>
-      Array(numberOfLines).fill(""),
+    const tempGrid = Array.from({ length: numberOfRows }, () =>
+      Array(numberOfColumns).fill(""),
     );
     setGrid(tempGrid);
   }
 
   function tileClicked(tile, line) {
     const nextTileId = `${line}-${tile}`;
-    setDirectory("rsr_2026/");
+    setDirectory(routeDisplayed.toLowerCase().replace(/\s+/g, "_") + "/");
     setTileId(nextTileId);
 
     if (backendOn) {
@@ -201,19 +232,35 @@ function AdventureComponent({ backendOn, alertMethod }) {
   return (
     <>
       <h1>Adventures!</h1>
-      <h2>
-        Will code a backend to support this. Idea is to have an image over a
-        grid, each tile on grid is linked to a separate directory in the back
-        end to show photo, ideas from that area.
-      </h2>
-
+      <List>
+        <ListItemButton onClick={() => setShowRoutes(!showRoutes)}>
+          <ListItemText primary="Select Route to display" />{" "}
+          {showRoutes ? <FaAngleUp /> : <FaAngleDown />}
+        </ListItemButton>
+        <Collapse in={showRoutes} timeout="3000" unmountOnExit>
+          <List component="div">
+            {possibleRoutes.map((r, i) => (
+              <ListItemButton
+                key={i}
+                onClick={() => {
+                  setRouteDisplayed(r);
+                  setShowRoutes(false);
+                }}
+              >
+                <ListItemText primary={r} />
+              </ListItemButton>
+            ))}
+          </List>
+        </Collapse>
+      </List>
+      <h2>{routeDisplayed}</h2>
       {showDragBox ? (
         <div className="adventure-display">
           <OutsideClickHandler onOutsideClick={() => setShowDragBox(false)}>
             <h1>Drag Images here to Upload</h1>
 
             {showImageOnly ? (
-              <div className = "adventure-image">
+              <div className="adventure-image">
                 <h1>Showing Image</h1>
                 <img src={imageToDisplay} alt="I'm an image from the BE" />
               </div>
@@ -259,24 +306,27 @@ function AdventureComponent({ backendOn, alertMethod }) {
               Hide
             </Button>
           </OutsideClickHandler>
-        </ div>
+        </div>
       ) : (
-        <div className="game-board">
-          {grid.map((line, lineIndex) => (
-            <div className="board-line" key={lineIndex}>
-              {line.map((tile, tileIndex) => (
-                <div
-                  onClick={() => tileClicked(tileIndex, lineIndex)}
-                  className={`wordsearch-box
+        <div
+          className="adventure-board"
+          style={{
+            "--adventure-rows": numberOfRows,
+            "--adventure-cols": numberOfColumns,
+            "--url_image": `url(${imageURL})`,
+          }}
+        >
+          {grid.flatMap((line, lineIndex) =>
+            line.map((tile, tileIndex) => (
+              <div
+                onClick={() => tileClicked(tileIndex, lineIndex)}
+                className={`adventure-tile
                   ${backendOn && "hover"}
                   `}
-                  key={lineIndex + "," + tileIndex}
-                >
-                  {lineIndex},{tileIndex}
-                </div>
-              ))}
-            </div>
-          ))}
+                key={lineIndex + "," + tileIndex}
+              ></div>
+            )),
+          )}
         </div>
       )}
     </>
