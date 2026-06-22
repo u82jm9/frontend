@@ -20,7 +20,10 @@ function openIDB() {
 async function idbGet(key) {
   const db = await openIDB();
   return new Promise((resolve, reject) => {
-    const req = db.transaction(IDB_STORE, "readonly").objectStore(IDB_STORE).get(key);
+    const req = db
+      .transaction(IDB_STORE, "readonly")
+      .objectStore(IDB_STORE)
+      .get(key);
     req.onsuccess = () => resolve(req.result ?? null);
     req.onerror = () => reject(req.error);
   });
@@ -29,7 +32,10 @@ async function idbGet(key) {
 async function idbSet(key, value) {
   const db = await openIDB();
   return new Promise((resolve, reject) => {
-    const req = db.transaction(IDB_STORE, "readwrite").objectStore(IDB_STORE).put(value, key);
+    const req = db
+      .transaction(IDB_STORE, "readwrite")
+      .objectStore(IDB_STORE)
+      .put(value, key);
     req.onsuccess = () => resolve();
     req.onerror = () => reject(req.error);
   });
@@ -88,7 +94,12 @@ async function readDirectoryIntoData(dirHandle, parentPath) {
       entities.push(...children);
     } else {
       const file = await handle.getFile();
-      entities.push({ id, type: "file", size: file.size, date: new Date(file.lastModified) });
+      entities.push({
+        id,
+        type: "file",
+        size: file.size,
+        date: new Date(file.lastModified),
+      });
     }
   }
   return entities;
@@ -96,7 +107,7 @@ async function readDirectoryIntoData(dirHandle, parentPath) {
 
 // ---
 
-function AdventureComponent({ alertMethod }) {
+function AdventureComponent_AI({ alertMethod }) {
   const [showFileManager, setShowFileManager] = useState(false);
   const [grid, setGrid] = useState([]);
   const [fileData, setFileData] = useState([]);
@@ -104,7 +115,8 @@ function AdventureComponent({ alertMethod }) {
   const [error, setError] = useState(null);
   const tileHandleRef = useRef(null);
   const numberOfLines = 9;
-  const isFSASupported = typeof window !== "undefined" && "showDirectoryPicker" in window;
+  const isFSASupported =
+    typeof window !== "undefined" && "showDirectoryPicker" in window;
 
   useEffect(() => {
     Logger.infoLog("I'm on the Adventure Component Page!");
@@ -124,7 +136,9 @@ function AdventureComponent({ alertMethod }) {
     setError(null);
 
     if (!isFSASupported) {
-      setError("Your browser does not support the File System Access API. Please use Chrome or Edge.");
+      setError(
+        "Your browser does not support the File System Access API. Please use Chrome or Edge.",
+      );
       return;
     }
 
@@ -157,12 +171,16 @@ function AdventureComponent({ alertMethod }) {
         const parts = parent.split("/").filter(Boolean).slice(1); // strip tileId prefix
         let dirHandle = tileHandle;
         for (const part of parts) {
-          dirHandle = await dirHandle.getDirectoryHandle(part, { create: true });
+          dirHandle = await dirHandle.getDirectoryHandle(part, {
+            create: true,
+          });
         }
         if (file.type === "folder") {
           await dirHandle.getDirectoryHandle(file.name, { create: true });
         } else {
-          const fileHandle = await dirHandle.getFileHandle(file.name, { create: true });
+          const fileHandle = await dirHandle.getFileHandle(file.name, {
+            create: true,
+          });
           const writable = await fileHandle.createWritable();
           await writable.write(file.file);
           await writable.close();
@@ -202,15 +220,20 @@ function AdventureComponent({ alertMethod }) {
         your root "Directory" folder the first time.
       </h2>
 
-      {error && (
-        <p style={{ color: "red" }}>{error}</p>
-      )}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {showFileManager ? (
         <OutsideClickHandler onOutsideClick={() => setShowFileManager(false)}>
           <h2>Tile {currentTileId}</h2>
           <Willow>
-            <div style={{ height: "600px", width: "900px", maxWidth: "100%", textAlign: "left" }}>
+            <div
+              style={{
+                height: "600px",
+                width: "900px",
+                maxWidth: "100%",
+                textAlign: "left",
+              }}
+            >
               <Filemanager
                 key={currentTileId}
                 mode="cards"
@@ -228,7 +251,7 @@ function AdventureComponent({ alertMethod }) {
               {line.map((tile, tileIndex) => (
                 <div
                   onClick={() => tileClicked(tileIndex, lineIndex)}
-                  className="wordsearch-box"
+                  className="wordsearch-box hover"
                   key={lineIndex + "," + tileIndex}
                 >
                   {lineIndex},{tileIndex}
@@ -241,4 +264,4 @@ function AdventureComponent({ alertMethod }) {
     </>
   );
 }
-export default AdventureComponent;
+export default AdventureComponent_AI;

@@ -186,6 +186,43 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: fit-content;
 }
 
+.file-drag-box {
+  border-radius: 5px;
+  border-color: black;
+  background-color: burlywood;
+  margin: 0 auto;
+  width: 350px;
+  height: 350px;
+}
+
+.file-display-box {
+  display: inline-flex;
+}
+
+.file-display-box img {
+  max-height: 100px;
+  max-width: 100px;
+  margin: 5px;
+}
+
+.drag-enter {
+  background-color: rgb(113, 191, 211);
+}
+
+.adventure-image img {
+  max-height: 1000px;
+  max-width: 1000px;
+  margin: 5px;
+}
+
+.adventure-display {
+  height: fit-content;
+  width: fit-content;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px black solid;
+}
+
 .google-calendar {
   margin: 15px;
   border: 1px solid black;
@@ -254,7 +291,9 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
 /* .note-task */
 .note-task {
   height: min-content;
-  transition: height 0.5s ease-in-out, font-weight 0.5s ease-in-out;
+  transition:
+    height 0.5s ease-in-out,
+    font-weight 0.5s ease-in-out;
 }
 
 .note-task:hover {
@@ -395,7 +434,7 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   height: 150px;
   position: absolute;
   right: 125px;
-  top: 0px; 
+  top: 0px;
   transform: rotate(45deg);
   width: 150px;
   z-index: 11;
@@ -440,7 +479,7 @@ padding: 30px 60px - 30px to top and bottom, 60px to left and right
   width: 30px;
 }
 
-.wordsearch-box:hover {
+.hover:hover {
   background-color: darkgoldenrod;
   cursor: pointer;
 }

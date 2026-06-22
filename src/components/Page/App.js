@@ -14,10 +14,11 @@ import StickyNoteComponent from "../StickyNote/StickyNoteComponent";
 import BikeBuilderComponent from "../Bike/BikeBuilderComponent";
 import Logger from "../Logger";
 import GoogleCalendar from "../Google/GoogleCalendar";
+import AdventureComponent_AI from "../Adventures/AdventureComponent_AI";
 import AdventureComponent from "../Adventures/AdventureComponent";
 
 const BACK_END_API = "http://localhost:8088/demo/Test/";
-const pagesRequireBackend = ["/Notes", "/Bikes"];
+const pagesRequireBackend = ["/Notes", "/Bikes", "/Recipes"];
 function App() {
   const [backendOn, setBackendOn] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -37,14 +38,12 @@ function App() {
     try {
       let r = await axios.get(BACK_END_API + "IsThisThingOn");
       setBackendOn(r.data);
-      const status = String(backendOn);
-      console.log("Back-End ON!!! = " + status);
+      const status = r.data.toString();
     } catch (err) {
       setBackendOn(false);
-      const status = String(backendOn);
-      console.log("Back-End not on!! = " + status);
     } finally {
       checkPage();
+      console.log("Backend on? " + backendOn);
     }
   }
 
@@ -90,7 +89,21 @@ function App() {
               {showAlert && (
                 <Alert severity={alertSeverity}>{alertMessage}</Alert>
               )}
-              <AdventureComponent alertMethod={{ displayAlertMessage }} />
+              <AdventureComponent
+                backendOn={backendOn}
+                alertMethod={displayAlertMessage}
+              />
+            </PageLayout>
+          }
+        />
+        <Route
+          path="/Adventure_AI"
+          element={
+            <PageLayout backendOn={backendOn}>
+              {showAlert && (
+                <Alert severity={alertSeverity}>{alertMessage}</Alert>
+              )}
+              <AdventureComponent_AI alertMethod={displayAlertMessage} />
             </PageLayout>
           }
         />

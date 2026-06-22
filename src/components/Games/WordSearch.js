@@ -366,7 +366,7 @@ function WordSearch({ displayAlert }) {
                     restartTimer(3500);
                     tileClick(lineIndex, columnIndex);
                   }}
-                  className={`wordsearch-box
+                  className={`wordsearch-box hover
                   ${isSelected && "tile-selected"}
                   ${isLocked ? "tile-locked" : ""}
                   `}

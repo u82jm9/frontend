@@ -11,6 +11,7 @@ import Logger from "../Logger";
 
 const BIKE_OPTIONS_API_URL = "http://localhost:8088/demo/Options/";
 const BIKE_BUILDER_API_URL = "http://localhost:8088/demo/FullBike/";
+const BIKE_PARTS_API_URL = "http://localhost:8088/demo/Parts/";
 function BikeBuilderComponent({ alertMethod, backendOn }) {
   const [isLoading, setIsLoading] = useState(false);
   const [databaseBikes, setDatabaseBikes] = useState([]);
@@ -131,7 +132,7 @@ function BikeBuilderComponent({ alertMethod, backendOn }) {
     try {
       Logger.warnLog("Get parts for Bike: ", bikeOnDisplay);
       let b = await axios.post(
-        BIKE_BUILDER_API_URL + "GetAllParts",
+        BIKE_PARTS_API_URL + "GetAllParts",
         bikeOnDisplay
       );
       let message = "Parts returned: " + b.data.toString();
